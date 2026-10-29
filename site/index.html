@@ -459,7 +459,7 @@ function pageCase(c){
     const plist = [c.poster, cover].filter(Boolean).flatMap(withOld);
     top = `<div class="player">${plist.length ? `<img class="poster" src="${esc(plist[0])}"${altAttr(plist)} alt="" onerror="nextSrc(this)||this.remove()">` : ""}${go}</div>
       <p class="player-note">${IN_PREVIEW ? "In deze voorbeeldweergave opent de film op Vimeo. Op je website speelt hij hier af." : `Speelt de film niet af? <a href="${esc(c.video)}" target="_blank" rel="noopener">Bekijk hem op Vimeo</a>.`}</p>`;
-    rest = c.beelden;
+    rest = c.beelden.filter(b => b !== poster);
   } else if (cover){
     top = `<div class="cover"><img class="main" src="${esc(cover)}"${altAttr(c.beelden.flatMap(withOld))} alt="${esc(c.klant)} – ${esc(c.project)}" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><div class="fb red"><img src="${MARK_WHITE}" alt=""></div></div>`;
   } else if (c.video){
@@ -469,7 +469,7 @@ function pageCase(c){
   }
   const facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", esc(c.discipline)]];
   if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
-  if (c.website) facts.push(["Website", `<a href="${esc(c.website)}" target="_blank" rel="noopener">${esc(c.website.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a>`]);
+  if (c.website) facts.push(["Website", `<a href="${esc(c.website)}" target="_blank" rel="noopener">${esc(c.website.replace(/^https?:\/\/(www\.)?/,"").replace(/\/.*$/,""))}</a>`]);
   const links = [
     c.website ? `<a class="btn line" href="${esc(c.website)}" target="_blank" rel="noopener">Bekijk de website</a>` : ""
   ].join("");
