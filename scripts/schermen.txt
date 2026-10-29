@@ -1,0 +1,3 @@
+# Websites waarvan GitHub automatisch een schermafbeelding neemt (computer en gsm).
+# Formaat: naam <tab> adres. Resultaat: site/img/schermen/naam-computer.jpg en naam-gsm.jpg
+cafe-parti	https://restocafeparti.be/

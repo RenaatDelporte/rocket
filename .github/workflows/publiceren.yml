@@ -29,6 +29,20 @@ jobs:
         with:
           python-version: "3.12"
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Schermafbeeldingen van websites nemen
+        run: |
+          if node scripts/schermafbeeldingen.mjs --nodig; then
+            npm install --no-save --no-package-lock playwright@1.47.2
+            npx playwright install --with-deps chromium
+            node scripts/schermafbeeldingen.mjs
+          else
+            echo "Geen nieuwe schermafbeeldingen nodig."
+          fi
+
       - name: Ontbrekende beelden ophalen
         run: |
           pip install --quiet pillow
@@ -46,9 +60,12 @@ jobs:
             git push
           fi
 
+      - name: Website bouwen (losse pagina's, sitemap, gegevens voor Google en AI)
+        run: node scripts/bouw.mjs
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist
       - id: deployment
         uses: actions/deploy-pages@v4

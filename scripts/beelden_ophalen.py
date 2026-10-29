@@ -14,7 +14,7 @@ def vimeo_still(video_id):
     import json, re
     info = json.loads(fetch(f"https://vimeo.com/api/oembed.json?width=1920&url=https://vimeo.com/{video_id}"))
     with open("scripts/vimeo-info.txt", "a", encoding="utf-8") as f:
-        f.write(f"{video_id}\t{info.get('title','')}\t{info.get('duration','')}s\t{info.get('width','')}x{info.get('height','')}\n")
+        f.write(f"{video_id}\t{info.get('title','')}\t{info.get('duration','')}s\t{info.get('width','')}x{info.get('height','')}\t{info.get('upload_date','')}\n")
     return re.sub(r"-d_\d+(x\d+)?$", "-d_1920x1080", info["thumbnail_url"])
 
 ok = skip = fail = 0

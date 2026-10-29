@@ -25,6 +25,7 @@ const HERO_SECONDS = 6;
      video: "https://vimeo.com/123456", // optioneel: de film speelt af op de projectpagina
      poster: "img/films/naam.jpg",      // optioneel: startbeeld van de film
      duur: "1:19",                      // optioneel: lengte van de film
+     datum: "2024-02-06",               // optioneel: publicatiedatum van de film (voor Google)
      binnenkort: true,                  // optioneel: toont "Binnenkort" op de tegel
      website: "https://klant.be",       // optioneel
      partner: "Atelier 46"              // optioneel
@@ -37,19 +38,23 @@ const CASES = [
            "Met Rocket maakten we een <b>animatievideo</b> die op een eenvoudige manier uitlegt hoe de ronde tafels werken, voor wie ze bedoeld zijn en in welke regio’s: Waasland, Dender, Regio Aalst en Dender Zuid."],
     beelden:["img/projecten/ggz-ads-7.jpg","img/projecten/ggz-ads-2.jpg","img/projecten/ggz-ads-3.jpg","img/projecten/ggz-ads-4.jpg","img/projecten/ggz-ads-5.jpg","img/projecten/ggz-ads-6.jpg"],
     video:"https://vimeo.com/1240892524", poster:"img/projecten/ggz-ads-1.jpg", website:"https://www.ggzads.be/zorgwekkende-zorgmijders-aanklampende-zorg-vanuit-de-mobiele-teams-ronde-tafels-gedeelde-zorg" },
-  { slug:"de-boever-reining-horses", klant:"De Boever Reining Horses", project:"Sfeervideo", discipline:"Video", binnenkort:true,
+  { slug:"de-boever-reining-horses", klant:"De Boever Reining Horses", project:"Sfeervideo", discipline:"Video",
     tekst:["De Boever Reining Horses is een kleinschalige <b>pensionstalling en reiningstal</b> in Vlierzele. Op de binnenpiste met westernbodem wordt er getraind, les gegeven en voorbereid op de shows.",
            "Met Rocket maakten we een <b>sfeervideo</b> die toont waar de stal voor staat: rust, vertrouwen en veel liefde voor paarden.",
-           "Filmen met dieren is altijd een uitdaging. Paarden zijn <b>onvoorspelbaar</b> en trekken zich weinig aan van een draaiboek of een camera. Het vraagt geduld, flexibiliteit en vooral veel tijd om net dat ene moment te vangen.",
-           "De film verschijnt binnenkort."],
-    beelden:["img/projecten/de-boever-reining-horses-1.jpg"], website:"https://dbstables.be/" },
+           "Filmen met dieren is altijd een uitdaging. Paarden zijn <b>onvoorspelbaar</b> en trekken zich weinig aan van een draaiboek of een camera. Het vraagt geduld, flexibiliteit en vooral veel tijd om net dat ene moment te vangen."],
+    beelden:["img/films/de-boever-reining-horses.jpg"], video:"https://vimeo.com/1240899134",
+    poster:"img/films/de-boever-reining-horses.jpg", website:"https://dbstables.be/" },
+  { slug:"cafe-parti", klant:"Café Parti", project:"Website", discipline:"Webdesign", partner:"Atelier 46",
+    tekst:["Café Parti is een resto-café in Gent, vlakbij het Sint-Pietersstation. Je kan er terecht voor een ontspannen lunch of diner met <b>verse, huisbereide gerechten</b>, en in de tuin waan je je even op vakantie.",
+           "Samen met Atelier 46 bouwden we een <b>overzichtelijke website</b> waar je meteen de weeklunch, de openingsuren en alle praktische info vindt."],
+    beelden:["img/projecten/cafe-parti-1.jpg"], website:"https://restocafeparti.be/" },
   { slug:"i-mens", klant:"i-mens", project:"Fotoshoot", discipline:"Fotografie", partner:"Atelier 46 & Kurt Stallaert",
     tekst:["In opdracht van <b>i-mens</b> &amp; Atelier 46 coördineerden wij, in samenwerking met <b>Kurt Stallaert</b>, een fotoshoot die de essentie van hun werk belicht.",
            "De focus lag op het vastleggen van <b>dagdagelijkse situaties</b>, waarbij i-mens medewerkers samen met patiënten in beeld zijn gebracht. Deze beelden dienen ter ondersteuning van de interne communicatie van i-mens."],
     beelden:["img/projecten/i-mens-1.jpg","img/projecten/i-mens-2.jpg","img/projecten/i-mens-3.jpg","img/projecten/i-mens-4.jpg"] },
   { slug:"pilz", klant:"Pilz", project:"Corporate film", discipline:"Video",
     tekst:["Pilz vroeg ons om hun waarden te vertalen in een corporate film. Deze film moest zowel dienen op beurzen om potentiële klanten te overtuigen als voor potentiële werknemers."],
-    beelden:["img/projecten/pilz-1.jpg","img/projecten/pilz-2.jpg"], video:"https://vimeo.com/910566776", duur:"1:19",
+    beelden:["img/projecten/pilz-1.jpg","img/projecten/pilz-2.jpg"], video:"https://vimeo.com/910566776", duur:"1:19", datum:"2024-02-06",
     poster:"img/films/pilz.jpg" },
   { slug:"broodnodig", klant:"De Boever Ramen & Deuren", project:"Wij hebben jou broodnodig", discipline:"Media & Print",
     tekst:["Bij De Boever Ramen & Deuren zijn ze constant op zoek naar nieuwe werkkrachten. Ze bij de ramen en deurenspecialist op zoek naar een unieke manier om hun vacatures in de kijker te zetten.",
@@ -59,7 +64,7 @@ const CASES = [
     tekst:["Aan het station van Aalst werd eind augustus het <b>deelfietsennetwerk gelanceerd</b> met een leuk event van Solva. Je kon er op een parcours de <b>nieuwe elektrische deelfietsen testen</b>, het tegen elkaar opnemen op fietsen op rollen of een leuke foto nemen aan de photobooth. <i>Stad Aalst</i> trakteerde alle aanwezigen op een gratis drankje.",
            "Met Rocket maakte we een <b>after-movie van het event</b>. Deze wordt verspreid op de sociale media van de betrokken partijen en fungeert ook als <b>lanceringsfilm</b> voor het fietsennetwerk."],
     beelden:["img/projecten/solva-1.jpg","img/projecten/solva-2.jpg","img/projecten/solva-3.jpg"],
-    video:"https://vimeo.com/1009152089", duur:"1:32",
+    video:"https://vimeo.com/1009152089", duur:"1:32", datum:"2024-09-13",
     poster:"img/films/solva.jpg" },
   { slug:"garage-thomas-uyttendaele", klant:"Garage Thomas Uyttendaele", project:"Nieuwe branding", discipline:"Print",
     tekst:["Garage Thomas Uyttendaele is een garage voor nieuwe en recente tweedehandswagens. Je kan er terecht voor de aankoop van een wagen en voor het onderhoud van jouw wagen.",
@@ -87,7 +92,7 @@ const CASES = [
   { slug:"symobo", klant:"Symobo", project:"Ondertiteling NL & FR", discipline:"Video",
     tekst:["Met Rocket ondertitelden we de video’s van Symobo. In totaal werden een 10-tal video’s voorzien van ondertitels en dat zowel in het Nederlands als Frans.",
            "Bij Symobo vertrekken ze niet vanuit standaardoplossingen. Wél vanuit uw wensen, doelstellingen en mogelijkheden. Op basis daarvan kiezen ze het beste prefab-bouwsysteem. Zo bouwen ze altijd snel, duurzaam en kostenefficiënt."],
-    beelden:[], video:"https://vimeo.com/932423574", duur:"2:57",
+    beelden:[], video:"https://vimeo.com/932423574", duur:"2:57", datum:"2024-04-09",
     poster:"img/films/symobo.jpg" },
   { slug:"de-boever-advertentie", klant:"De Boever Ramen & Deuren", project:"Printadvertentie", discipline:"Print",
     tekst:["Print advertentie voor De Boever Ramen & Deuren. De raamspecialist in Vlaanderen met ondertussen 4 vestigingen."],
@@ -114,7 +119,16 @@ const KLANTEN = [
   ["DB-Decoteam.be","img/klanten/db-decoteam.png",""],
   ["Steven David","img/klanten/steven-david.png",""],
   ["Bonne Route","img/klanten/bonne-route.png","https://bonneroute.be/"],
-  ["Šecuur","img/klanten/secuur.png",""]
+  ["Šecuur","img/klanten/secuur.png",""],
+  ["Café Parti","img/klanten/cafe-parti.png","https://restocafeparti.be/"],
+  ["PJS Technics","img/klanten/pjs-technics.png",""],
+  ["The Kitchen Expert","img/klanten/the-kitchen-expert.png",""],
+  ["HP Cleaning & Zoon","img/klanten/hp-cleaning.png",""],
+  ["Resurge","img/klanten/resurge.png",""],
+  ["Rodeo Caravans","img/klanten/rodeo-caravans.png",""],
+  ["Uyttendaele Stefaan BV","img/klanten/uyttendaele-stefaan.png",""],
+  ["Volksbal Markt Lede","img/klanten/volksbal.png",""],
+  ["WeConstruct","img/klanten/weconstruct.png",""]
 ];
 
 /* Contactformulier: adres van je formulierdienst (bv. Formspree). Leeg = niets wordt verzonden. */
