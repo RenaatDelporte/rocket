@@ -10,6 +10,7 @@ De website van Rocket (wearerocket.be).
   Elk project krijgt automatisch een eigen pagina: `wearerocket.be/portfolio/<slug>/`.
 - **Film bij een project:** zet de Vimeo-link bij `video`. De film speelt dan af op de projectpagina. Met `duur` ("1:19") en `datum` ("2024-02-06") weten zoekmachines ook hoe lang de film is en wanneer hij verscheen.
 - **Klantenlogo's** staan in `site/img/klanten/` en in de lijst `KLANTEN`.
+- **Diensten, werkgebied en veelgestelde vragen** staan ook in `inhoud.js` (`DIENSTEN`, `WERKGEBIED`, `VRAGEN`). Elke dienst krijgt een eigen pagina: `wearerocket.be/diensten/<slug>/`, met de projecten van die discipline eronder. Geen prijzen vermelden.
 - **Screenshot van een website:** zet een regel in `scripts/schermen.txt` (naam, tab, adres). Bij de volgende publicatie maakt GitHub een computer- en gsm-screenshot in `site/img/schermen/`.
 
 ## Wat er bij het publiceren gebeurt

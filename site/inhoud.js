@@ -132,5 +132,60 @@ const KLANTEN = [
   ["WeConstruct","img/klanten/weconstruct.png",""]
 ];
 
+/* ==================================================================
+   OVER ROCKET — wat we doen, waar we actief zijn en veelgestelde vragen.
+   Deze teksten staan op de pagina "Onze visie" en op een eigen pagina per dienst
+   (wearerocket.be/diensten/<slug>/). Ze zijn belangrijk om gevonden te worden
+   in Google en in AI-assistenten: noem je regio en je diensten gerust bij naam.
+   Geen prijzen vermelden.
+   ================================================================== */
+const REGIO = "Oost-Vlaanderen";
+const WERKGEBIED = "Rocket zit in <b>Lede</b> en werkt voor bedrijven en organisaties in heel <b>Oost-Vlaanderen</b>: van Aalst en de Denderstreek tot Gent en Wetteren. We komen graag bij je langs.";
+
+/* DIENSTEN — disciplines: welke projecten (zie "discipline" bij CASES) op de pagina komen. Leeg = de nieuwste projecten. */
+const DIENSTEN = [
+  { slug:"marketingbegeleiding", naam:"Marketingbegeleiding",
+    titel:"Marketingbegeleiding voor bedrijven in Oost-Vlaanderen",
+    kort:"We schuiven aan naast je marketingverantwoordelijke en kijken samen waar het beter en efficiënter kan.",
+    tekst:["Vaak loopt er al heel wat: een website, sociale media, advertenties, drukwerk. Maar hangt het ook samen, en haalt het wat het zou moeten halen? Daarom gaan we <b>langs bij bedrijven</b> en gaan we <b>naast de marketingverantwoordelijke</b> zitten.",
+           "Samen bekijken we wat er loopt en waar je kan <b>bijsturen, verbeteren of efficiënter werken</b>. Moet er daarna iets gemaakt worden, een film, een website of een campagne, dan zetten we ons <b>team van experts</b> in.",
+           "Rocket zit in Lede en begeleidt bedrijven en organisaties in heel <b>Oost-Vlaanderen</b>."],
+    disciplines:[] },
+  { slug:"video", naam:"Video & animatie",
+    titel:"Bedrijfsfilm en animatievideo in Oost-Vlaanderen",
+    kort:"Corporate films, sfeervideo's en animaties die je verhaal in een paar minuten duidelijk maken.",
+    tekst:["Een goede film vertelt in een paar minuten wat je anders in tien pagina's uitlegt. We maken <b>bedrijfsfilms</b>, <b>sfeervideo's</b>, <b>animatievideo's</b> en films voor <b>lanceringen en rekrutering</b>.",
+           "Van het eerste idee tot de laatste montage, met <b>ondertiteling in het Nederlands en het Frans</b> als je dat wil. Voor elke film kiezen we de mensen die passen bij het verhaal."],
+    disciplines:["Video"] },
+  { slug:"webdesign", naam:"Webdesign",
+    titel:"Websites op maat voor bedrijven in Oost-Vlaanderen",
+    kort:"Overzichtelijke websites die tonen wie je bent en bezoekers snel de weg wijzen.",
+    tekst:["Je website werkt dag en nacht voor je. We bouwen <b>overzichtelijke websites</b> die tonen wie je bent en bezoekers snel naar de juiste info leiden: van een online etalage voor een juwelier tot één site voor een school met drie vestigingen.",
+           "Restaurants, winkels, scholen en bedrijven: elke site is <b>op maat</b> en werkt vlot op gsm."],
+    disciplines:["Webdesign"] },
+  { slug:"print-en-media", naam:"Print & media",
+    titel:"Print en media voor bedrijven in Oost-Vlaanderen",
+    kort:"Branding, advertenties en campagnes die opvallen, ook offline.",
+    tekst:["Print werkt, als je het slim inzet. Denk aan <b>80.000 broodzakken</b> bij 80 bakkers om nieuwe collega's te vinden, of een <b>nieuwe branding</b> voor een garage.",
+           "We ontwerpen <b>advertenties, folders, brochures en huisstijlen</b> en zoeken mee naar de juiste media om je boodschap bij de juiste mensen te krijgen."],
+    disciplines:["Print", "Media & Print"] },
+  { slug:"fotografie", naam:"Fotografie",
+    titel:"Bedrijfsfotografie in Oost-Vlaanderen",
+    kort:"Echte beelden van je mensen, je werk en je producten.",
+    tekst:["Stockfoto's vertellen niet jouw verhaal. We organiseren <b>fotoshoots</b> van je mensen, je werkplek en je producten, samen met de fotograaf die bij de opdracht past.",
+           "Zo heb je beelden voor je website, sociale media, vacatures en interne communicatie."],
+    disciplines:["Fotografie"] }
+];
+
+/* VEELGESTELDE VRAGEN — [vraag, antwoord]. Staan op de pagina "Onze visie". */
+const VRAGEN = [
+  ["Wat doet Rocket?", "Rocket is een marketing- en communicatiepartner uit Lede. We gaan langs bij bedrijven, schuiven aan bij de marketingverantwoordelijke en kijken samen waar het beter en efficiënter kan. Daarnaast maken we video's, websites, drukwerk en fotografie, met een team van experts."],
+  ["In welke regio werken jullie?", "Vooral in Oost-Vlaanderen. Rocket zit in Lede en werkt voor klanten van Aalst en de Denderstreek tot Gent en Wetteren. We komen graag bij je langs."],
+  ["Werken jullie samen met onze eigen marketingverantwoordelijke?", "Ja, dat is net de bedoeling. We gaan naast je marketingverantwoordelijke zitten, kijken mee naar wat er loopt en zoeken samen waar je kan bijsturen, verbeteren of efficiënter werken."],
+  ["Wie voert de projecten uit?", "Rocket werkt met een team van experts. Per project kiezen we de mensen die het best passen bij de opdracht, van filmmakers en fotografen tot ontwerpers en webbouwers."],
+  ["Kan ik ook voor één project bij jullie terecht?", "Zeker. Een bedrijfsfilm, een animatievideo, een website, een fotoshoot of een advertentie: je kan ook voor één concreet project bij ons aankloppen."],
+  ["Hoe beginnen we eraan?", "Met een gesprek. Bel +32 473 22 18 29, mail naar renaat@wearerocket.be of vul het contactformulier in. Dan komen we langs voor een koffie, of thee. Of alletwee."]
+];
+
 /* Contactformulier: adres van je formulierdienst (bv. Formspree). Leeg = niets wordt verzonden. */
 const FORM_ENDPOINT = "";

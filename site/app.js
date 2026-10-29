@@ -25,8 +25,16 @@ function href(key){
   if (key === "portfolio") return PREFIX || "./";
   if (key === "klanten") return (PREFIX || "./") + "#klanten";
   if (key === "visie" || key === "contact") return PREFIX + key + "/";
+  if (key.indexOf("dienst-") === 0) return PREFIX + "diensten/" + key.slice(7) + "/";
   return PREFIX + "portfolio/" + key + "/";
 }
+function diensten(){ return typeof DIENSTEN !== "undefined" ? DIENSTEN : []; }
+function vragen(){ return typeof VRAGEN !== "undefined" ? VRAGEN : []; }
+function regio(){ return typeof REGIO !== "undefined" ? REGIO : "Oost-Vlaanderen"; }
+/* de dienst waaronder een project valt (voor de link bij "Discipline") */
+function dienstVan(c){ return diensten().filter(function(d){ return d.disciplines.indexOf(c.discipline) > -1; })[0]; }
+/* projecten bij een dienst; zonder disciplines: de nieuwste */
+function werkVan(d){ return d.disciplines.length ? CASES.filter(function(c){ return d.disciplines.indexOf(c.discipline) > -1; }) : CASES.slice(0, 6); }
 function vimeoId(u){ var m = String(u || "").match(/vimeo\.com\/(?:video\/)?(\d+)/); return m ? m[1] : ""; }
 function coverOf(c){ return c.beelden[0] || c.poster || ""; }
 function candidates(c){ return c.beelden.concat(c.poster ? [c.poster] : []); }
@@ -80,18 +88,15 @@ function clientsBand(){
 function pageWerk(){
   return '<section class="hero" aria-label="Uitgelicht werk">' + heroHTML() + '<div class="panel"><img src="' + asset(LOGO_WHITE) + '" alt="Rocket" width="900" height="393"></div></section>' +
   '<section class="wrap intro">' +
-    '<h1>Wij helpen lokale organisaties en ondernemers met bedrijfscommunicatie op maat.</h1>' +
+    '<h1>Wij helpen lokale organisaties en ondernemers in ' + esc(regio()) + ' met bedrijfscommunicatie op maat.</h1>' +
     '<div class="intro-txt">' +
-      '<p>Elk bedrijf is specifiek en uniek. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>' +
+      '<p>Elk bedrijf is specifiek en uniek. Daarom schuiven we aan bij je marketingverantwoordelijke en zetten we het juiste team van experts in. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>' +
       '<a class="btn line" href="' + href("visie") + '">Onze visie <span aria-hidden="true">→</span></a>' +
     '</div>' +
   '</section>' +
   '<section class="wrap" aria-labelledby="pf-title"><h2 id="pf-title" class="sr-only">Portfolio</h2><div class="tiles">' + CASES.map(tile).join("") + '</div></section>' +
   clientsBand() +
-  '<section class="cta-band"><div class="wrap">' +
-    '<h2>Bel ons gerust voor een project of een koffie, of thee. Of alletwee.</h2>' +
-    '<a class="btn" href="' + href("contact") + '">Neem contact op</a>' +
-  '</div></section>';
+  ctaBand();
 }
 
 function pageCase(c){
@@ -113,7 +118,8 @@ function pageCase(c){
   } else {
     top = '<div class="cover"><div class="fb black"><img src="' + asset(MARK_WHITE) + '" alt=""></div></div>';
   }
-  var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", esc(c.discipline)]];
+  var dv = dienstVan(c);
+  var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", dv ? '<a href="' + esc(href("dienst-" + dv.slug)) + '">' + esc(c.discipline) + '</a>' : esc(c.discipline)]];
   if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
   if (c.website) facts.push(["Website", '<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "")) + '</a>']);
   var links = c.website ? '<a class="btn line" href="' + esc(c.website) + '" target="_blank" rel="noopener">Bekijk de website</a>' : "";
@@ -139,27 +145,70 @@ function pageCase(c){
   '</section>';
 }
 
+function dienstenGrid(skip){
+  return '<div class="diensten">' + diensten().filter(function(d){ return d.slug !== skip; }).map(function(d){
+    return '<a class="dienst" href="' + esc(href("dienst-" + d.slug)) + '"><h3>' + esc(d.naam) + '</h3><p>' + esc(d.kort) + '</p><span class="lees">Meer over ' + esc(d.naam.toLowerCase()) + ' <span aria-hidden="true">→</span></span></a>';
+  }).join("") + '</div>';
+}
+function faqHTML(){
+  var v = vragen(); if (!v.length) return "";
+  return '<section class="wrap blok" aria-labelledby="faq-title"><span class="label">Veelgestelde vragen</span><h2 id="faq-title">Goed om te weten</h2>' +
+    '<div class="faq">' + v.map(function(q){ return '<details><summary>' + esc(q[0]) + '</summary><p>' + esc(q[1]) + '</p></details>'; }).join("") + '</div></section>';
+}
+function ctaBand(){
+  return '<section class="cta-band"><div class="wrap">' +
+    '<h2>Bel ons gerust voor een project of een koffie, of thee. Of alletwee.</h2>' +
+    '<a class="btn" href="' + href("contact") + '">Neem contact op</a>' +
+  '</div></section>';
+}
+
 function pageVisie(){
-  return '<header class="wrap page-head"><span class="label">Visie</span><h1>Bedrijfscommunicatie op maat</h1></header>' +
+  return '<header class="wrap page-head"><span class="label">Onze visie</span><h1>Bedrijfscommunicatie op maat</h1></header>' +
   '<section class="wrap visie">' +
     '<div>' +
       '<p class="lede" style="margin-bottom:24px">Wij zijn ervan overtuigd dat <b>elk bedrijf specifiek en uniek</b> is. Daarom hanteren wij voor elk product, merk of dienst een <b>op maat gemaakte aanpak</b>.</p>' +
-      '<p>In de eerste fase luisteren wij aandachtig naar uw smaak, voorkeuren en wensen. Zodra wij een goed begrip hebben van de voor u geschikte communicatieoplossing, gaan wij direct aan de slag. Wij <b>selecteren de experts</b> die het beste passen bij uw <b>specifieke behoeften</b> en zorgen voor een <b>optimale uitvoering</b> van uw project.</p>' +
+      '<p>In de eerste fase luisteren wij aandachtig naar je smaak, voorkeuren en wensen. Zodra wij een goed begrip hebben van de communicatieoplossing die bij jou past, gaan wij direct aan de slag. Wij <b>selecteren de experts</b> die het beste passen bij je <b>specifieke behoeften</b> en zorgen voor een <b>optimale uitvoering</b> van je project.</p>' +
       '<p>Wij houden ervan om even aan tafel te schuiven om te luisteren. Want de basis van Rocket en van al onze realisaties zijn <b>mensen en hun verhaal</b>. Daarom, bel ons gerust voor een project of een koffie, of thee. Of alletwee.</p>' +
-      '<p style="margin-top:28px"><a class="btn" href="' + href("portfolio") + '">Bekijk het portfolio</a></p>' +
     '</div>' +
     '<div class="statement"><img src="' + asset(MARK_WHITE) + '" alt=""></div>' +
-  '</section>';
+  '</section>' +
+  '<section class="wrap blok aanpak" aria-labelledby="aanpak-title">' +
+    '<div><span class="label">Zo werken we</span><h2 id="aanpak-title">Naast je marketingverantwoordelijke</h2></div>' +
+    '<div>' +
+      '<p>We gaan vooral <b>langs bij bedrijven</b>. Daar gaan we <b>naast de marketingverantwoordelijke</b> zitten en kijken we samen waar we kunnen <b>bijsturen, verbeteren en efficiënter werken</b>.</p>' +
+      '<p>Rocket werkt met een <b>team van experts</b>. Voor elke opdracht zetten we de mensen in die het best passen: van filmmakers en fotografen tot ontwerpers en webbouwers.</p>' +
+    '</div>' +
+  '</section>' +
+  '<section class="wrap blok" aria-labelledby="wat-title"><span class="label">Wat we doen</span><h2 id="wat-title">Marketing en communicatie, van advies tot uitvoering</h2>' + dienstenGrid() + '</section>' +
+  '<section class="wrap blok gebied" aria-labelledby="gebied-title">' +
+    '<div><span class="label">Waar we actief zijn</span><h2 id="gebied-title">In heel ' + esc(regio()) + '</h2></div>' +
+    '<p class="lede">' + (typeof WERKGEBIED !== "undefined" ? WERKGEBIED : "") + '</p>' +
+  '</section>' +
+  faqHTML() +
+  '<section class="wrap blok"><p><a class="btn" href="' + href("portfolio") + '">Bekijk het portfolio</a></p></section>' +
+  ctaBand();
+}
+
+function pageDienst(d){
+  var werk = werkVan(d);
+  return '<div class="wrap"><a class="back" href="' + href("visie") + '">← Wat we doen</a></div>' +
+  '<header class="wrap page-head"><span class="label">' + esc(d.naam) + '</span><h1>' + esc(d.titel) + '</h1><p class="lede">' + esc(d.kort) + '</p></header>' +
+  '<section class="wrap dienst-tekst">' + d.tekst.map(function(t){ return '<p>' + t + '</p>'; }).join("") +
+    '<p><a class="btn" href="' + href("contact") + '">Neem contact op</a></p></section>' +
+  (werk.length ? '<section class="wrap more" aria-labelledby="dw-title"><div class="more-head"><h2 id="dw-title">' + (d.disciplines.length ? "Projecten" : "Uit ons portfolio") + '</h2><a href="' + href("portfolio") + '">Alle projecten →</a></div>' +
+    '<div class="tiles three">' + werk.map(function(c){ return tile(c, CASES.indexOf(c)); }).join("") + '</div></section>' : "") +
+  '<section class="wrap blok" aria-labelledby="ook-title"><span class="label">Wat we nog doen</span><h2 id="ook-title">Ook bij Rocket</h2>' + dienstenGrid(d.slug) + '</section>' +
+  ctaBand();
 }
 
 function pageContact(){
-  var picks = ["Video", "Print", "Webdesign", "Media & social", "Fotografie", "Iets anders"].map(function(v, k){
+  var picks = ["Marketingbegeleiding", "Video", "Print", "Webdesign", "Media & social", "Fotografie", "Iets anders"].map(function(v, k){
     return '<input type="checkbox" id="p' + k + '" name="dienst" value="' + esc(v) + '"><label for="p' + k + '">' + esc(v) + '</label>';
   }).join("");
   return '<header class="wrap page-head"><span class="label">Contact</span><h1>Let\'s talk!</h1></header>' +
   '<section class="wrap contact">' +
     '<div>' +
-      '<p class="lede">Wij houden ervan om even aan tafel te schuiven om te luisteren. Bel ons gerust voor een project of een koffie, of thee. Of alletwee.</p>' +
+      '<p class="lede">Wij houden ervan om even aan tafel te schuiven om te luisteren. Bel ons gerust voor een project of een koffie, of thee. Of alletwee. We komen ook graag bij je langs, overal in ' + esc(regio()) + '.</p>' +
       '<div class="person">' +
         '<strong>Renaat Delporte</strong>' +
         '<span>Rocket HQ, Molenhoek 168, 9340 Lede</span>' +
@@ -259,7 +308,9 @@ function route(){
   var h = decodeURIComponent(location.hash.slice(1)) || "portfolio";
   var c = CASES.filter(function(x){ return x.slug === h; })[0];
   var navKey = "portfolio", title;
+  var d = h.indexOf("dienst-") === 0 && diensten().filter(function(x){ return "dienst-" + x.slug === h; })[0];
   if (c){ view.innerHTML = pageCase(c); title = c.klant + " – " + c.project; }
+  else if (d){ view.innerHTML = pageDienst(d); title = d.naam; navKey = "visie"; }
   else if (PAGES[h]){ view.innerHTML = PAGES[h][0](); navKey = h === "werk" ? "portfolio" : h; title = PAGES[h][1]; }
   else { view.innerHTML = pageWerk(); }
   document.title = title ? title + " · Rocket" : "Rocket · Let's fly together";

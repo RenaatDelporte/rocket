@@ -1,5 +1,5 @@
 /* Bouwt de website in de map dist/:
-   - één echte HTML-pagina per adres (home, visie, contact en elk project),
+   - één echte HTML-pagina per adres (home, visie, contact, elke dienst en elk project),
      zodat Google en AI-zoekmachines alle tekst meteen kunnen lezen;
    - titel, beschrijving, deelbeeld en gestructureerde gegevens (schema.org) per pagina;
    - sitemap.xml, robots.txt en llms.txt.
@@ -20,14 +20,15 @@ const ctx = vm.createContext({ console });
 vm.runInContext('var MODE = "static", PREFIX = "";', ctx);
 vm.runInContext(read("inhoud.js"), ctx, { filename: "inhoud.js" });
 vm.runInContext(read("app.js"), ctx, { filename: "app.js" });
-const D = vm.runInContext("({ CASES, KLANTEN, HERO_MIX })", ctx);
+const D = vm.runInContext("({ CASES, KLANTEN, HERO_MIX, DIENSTEN: diensten(), VRAGEN: vragen(), REGIO: regio() })", ctx);
 const esc = ctx.esc, plain = ctx.plain;
 
 const ORG = {
   "@type": "ProfessionalService",
   "@id": SITE_URL + "/#rocket",
   name: "Rocket",
-  description: "Rocket helpt lokale organisaties en ondernemers met bedrijfscommunicatie op maat: video, print, webdesign, fotografie en media.",
+  description: `Rocket uit Lede is een marketing- en communicatiepartner voor bedrijven en organisaties in ${D.REGIO}. Rocket schuift aan bij de marketingverantwoordelijke om bij te sturen, te verbeteren en efficiënter te werken, en maakt met een team van experts video's, websites, drukwerk en fotografie.`,
+  slogan: "Let's fly together",
   url: SITE_URL + "/",
   logo: SITE_URL + "/img/logo-rood.png",
   image: SITE_URL + "/img/logo-rood.png",
@@ -36,8 +37,9 @@ const ORG = {
   vatID: "BE0797956741",
   address: { "@type": "PostalAddress", streetAddress: "Molenhoek 168", postalCode: "9340", addressLocality: "Lede", addressCountry: "BE" },
   founder: { "@type": "Person", name: "Renaat Delporte" },
-  areaServed: "Vlaanderen",
-  knowsAbout: ["Bedrijfscommunicatie", "Videoproductie", "Corporate film", "Animatievideo", "Webdesign", "Grafisch ontwerp", "Fotografie", "Social media"],
+  areaServed: { "@type": "AdministrativeArea", name: D.REGIO, containedInPlace: { "@type": "Country", name: "België" } },
+  knowsAbout: ["Marketingbegeleiding", "Marketingadvies", "Bedrijfscommunicatie", "Videoproductie", "Bedrijfsfilm", "Corporate film", "Animatievideo", "Webdesign", "Grafisch ontwerp", "Drukwerk", "Fotografie", "Social media"],
+  hasOfferCatalog: { "@type": "OfferCatalog", name: "Diensten van Rocket", itemListElement: D.DIENSTEN.map(d => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: d.naam, url: `${SITE_URL}/diensten/${d.slug}/` } })) },
   sameAs: ["https://www.instagram.com/wearerocket.be/", "https://vimeo.com/user194300604", "https://www.linkedin.com/company/rocketbe/"]
 };
 const WEBSITE = { "@type": "WebSite", "@id": SITE_URL + "/#website", url: SITE_URL + "/", name: "Rocket", inLanguage: "nl-BE", publisher: { "@id": ORG["@id"] } };
@@ -49,8 +51,8 @@ function vimeoId(u){ return ctx.vimeoId(u); }
 /* ---------- vaste delen van elke pagina ---------- */
 function shell({ mode, P, page, title, desc, canonical, ogImage, ogType, jsonld, main, mainClass, preview }){
   const L = mode === "hash"
-    ? { home: "#portfolio", contact: "#contact" }
-    : { home: P || "./", contact: P + "contact/" };
+    ? { home: "#portfolio", contact: "#contact", visie: "#visie", dienst: s => "#dienst-" + s }
+    : { home: P || "./", contact: P + "contact/", visie: P + "visie/", dienst: s => P + "diensten/" + s + "/" };
   const A = p => (mode === "hash" ? "" : P) + p;
   const head = preview
     ? `<title>Rocket website</title>
@@ -100,7 +102,10 @@ ${preview ? "" : "</head>\n"}${preview ? "" : `<body data-page="${page}" data-pr
 <main id="view"${mainClass ? ` class="${mainClass}"` : ""}>${main}</main>
 <footer>
   <div class="wrap foot">
-    <div><img src="${A("img/logo-wit.png")}" alt="Rocket" width="900" height="393"><p>Wij helpen lokale ondernemers met bedrijfscommunicatie op maat.</p></div>
+    <div><img src="${A("img/logo-wit.png")}" alt="Rocket" width="900" height="393"><p>Wij helpen lokale ondernemers in ${esc(D.REGIO)} met bedrijfscommunicatie op maat.</p></div>
+    <div><h2 class="foot-h">Wat we doen</h2><ul>
+${D.DIENSTEN.map(d => `      <li><a href="${L.dienst(d.slug)}">${esc(d.naam)}</a></li>`).join("\n")}
+      <li><a href="${L.visie}">Onze visie</a></li></ul></div>
     <div><h2 class="foot-h">Contact</h2><address><ul>
       <li>Renaat Delporte</li><li>Molenhoek 168, 9340 Lede</li>
       <li><a href="mailto:renaat@wearerocket.be">renaat@wearerocket.be</a></li>
@@ -141,11 +146,11 @@ function crumbs(list){ return { "@type": "BreadcrumbList", itemListElement: list
 
 /* home */
 {
-  const desc = "Rocket helpt lokale organisaties en ondernemers met bedrijfscommunicatie op maat. Bekijk ons portfolio met video's, websites, print en fotografie.";
+  const desc = `Rocket uit Lede helpt bedrijven en organisaties in ${D.REGIO} met marketing en communicatie op maat: marketingbegeleiding, video, websites, print en fotografie. Bekijk ons portfolio.`;
   const first = D.CASES.find(c => c.beelden[0] || c.poster);
   write("index.html", shell({
     mode: "static", P: "", page: "portfolio",
-    title: "Rocket – Bedrijfscommunicatie op maat | Video, webdesign, print en fotografie",
+    title: `Rocket – Marketing en bedrijfscommunicatie op maat in ${D.REGIO}`,
     desc, canonical: SITE_URL + "/", ogType: "website",
     ogImage: abs(first.beelden[0] || first.poster),
     jsonld: [ORG, WEBSITE, { "@type": "CollectionPage", "@id": SITE_URL + "/#portfolio", url: SITE_URL + "/", name: "Portfolio van Rocket", isPartOf: { "@id": WEBSITE["@id"] }, about: { "@id": ORG["@id"] },
@@ -157,16 +162,35 @@ function crumbs(list){ return { "@type": "BreadcrumbList", itemListElement: list
 
 /* visie en contact */
 for (const [key, fn, title, desc] of [
-  ["visie", ctx.pageVisie, "Onze visie – Rocket", "Elk bedrijf is specifiek en uniek. Rocket luistert eerst, kiest de juiste experts en zorgt voor communicatie op maat van jouw product, merk of dienst."],
-  ["contact", ctx.pageContact, "Contact – Rocket", "Neem contact op met Rocket in Lede: bel +32 473 22 18 29 of mail renaat@wearerocket.be voor een project, een koffie of een thee."]
+  ["visie", ctx.pageVisie, `Onze visie en aanpak – marketingpartner in ${D.REGIO} | Rocket`, `Rocket schuift aan naast je marketingverantwoordelijke om bij te sturen, te verbeteren en efficiënter te werken, met een team van experts. Actief in heel ${D.REGIO}.`],
+  ["contact", ctx.pageContact, "Contact – Rocket", `Neem contact op met Rocket in Lede: bel +32 473 22 18 29 of mail renaat@wearerocket.be. We komen graag langs, overal in ${D.REGIO}.`]
 ]){
   write(`${key}/index.html`, shell({
     mode: "static", P: "../", page: key, title, desc, canonical: `${SITE_URL}/${key}/`, ogType: "website", ogImage: abs("img/logo-rood.png"),
     jsonld: [ORG, WEBSITE, { "@type": key === "contact" ? "ContactPage" : "AboutPage", url: `${SITE_URL}/${key}/`, name: title, isPartOf: { "@id": WEBSITE["@id"] }, about: { "@id": ORG["@id"] } },
-      crumbs([["Rocket", SITE_URL + "/"], [key === "visie" ? "Visie" : "Contact", `${SITE_URL}/${key}/`]])],
-    main: render(fn, "../")
+      ...(key === "visie" && D.VRAGEN.length ? [{ "@type": "FAQPage", "@id": `${SITE_URL}/visie/#vragen`, url: `${SITE_URL}/visie/`, inLanguage: "nl-BE",
+        mainEntity: D.VRAGEN.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] : []),
+      crumbs([["Rocket", SITE_URL + "/"], [key === "visie" ? "Onze visie" : "Contact", `${SITE_URL}/${key}/`]])],
+    main: render(fn, "../"), mainClass: key === "visie" ? "ends-band" : ""
   }));
   pages.push([`/${key}/`, 0.6]);
+}
+
+/* diensten */
+for (const d of D.DIENSTEN){
+  const url = `${SITE_URL}/diensten/${d.slug}/`;
+  const werk = ctx.werkVan(d);
+  const img = werk.map(c => c.beelden[0] || c.poster).find(Boolean);
+  write(`diensten/${d.slug}/index.html`, shell({
+    mode: "static", P: "../../", page: "dienst",
+    title: `${d.titel} | Rocket`, desc: cut(d.kort + " " + d.tekst[0], 158), canonical: url, ogType: "website", ogImage: abs(img || "img/logo-rood.png"),
+    jsonld: [ORG, WEBSITE, { "@type": "Service", "@id": url + "#dienst", name: d.naam, serviceType: d.naam, description: plain(d.kort + " " + d.tekst.join(" ")), url,
+        provider: { "@id": ORG["@id"] }, areaServed: ORG.areaServed,
+        ...(d.disciplines.length ? { subjectOf: werk.map(c => ({ "@type": "CreativeWork", name: `${c.klant} – ${c.project}`, url: `${SITE_URL}/portfolio/${c.slug}/` })) } : {}) },
+      crumbs([["Rocket", SITE_URL + "/"], ["Wat we doen", SITE_URL + "/visie/"], [d.naam, url]])],
+    main: render(ctx.pageDienst, "../../", d), mainClass: "ends-band"
+  }));
+  pages.push([`/diensten/${d.slug}/`, 0.8]);
 }
 
 /* projecten */
@@ -223,7 +247,7 @@ const group = {};
 for (const c of D.CASES) (group[c.discipline] = group[c.discipline] || []).push(c);
 fs.writeFileSync(path.join(DIST, "llms.txt"), `# Rocket
 
-> Rocket is een communicatiebureau uit Lede (Oost-Vlaanderen, België) dat lokale organisaties en ondernemers helpt met bedrijfscommunicatie op maat: video en film, webdesign, print, fotografie en media. Rocket werkt per project met de experts die het best passen bij de vraag van de klant.
+> ${plain(ORG.description)}
 
 - Website: ${SITE_URL}/
 - Contactpersoon: Renaat Delporte
@@ -231,7 +255,15 @@ fs.writeFileSync(path.join(DIST, "llms.txt"), `# Rocket
 - Telefoon: +32 473 22 18 29
 - Adres: Molenhoek 168, 9340 Lede, België
 - Ondernemingsnummer: BE 0797.956.741
-- Werkwijze: eerst luisteren naar de klant, dan een voorstel op maat, daarna de juiste experts inzetten. Zie ${SITE_URL}/visie/
+- Werkgebied: ${plain(vm.runInContext('typeof WERKGEBIED !== "undefined" ? WERKGEBIED : ""', ctx) || D.REGIO)}
+- Werkwijze: Rocket gaat langs bij bedrijven, zit naast de marketingverantwoordelijke en kijkt waar het beter en efficiënter kan. Voor de uitvoering werkt Rocket met een team van experts. Zie ${SITE_URL}/visie/
+- Prijzen: op aanvraag.
+
+## Diensten
+${D.DIENSTEN.map(d => `- [${d.naam}](${SITE_URL}/diensten/${d.slug}/): ${plain(d.kort)}`).join("\n")}
+
+## Veelgestelde vragen
+${D.VRAGEN.map(([q, a]) => `### ${q}\n${a}`).join("\n\n")}
 
 ## Portfolio
 ${Object.entries(group).map(([d, list]) => `\n### ${d}\n` + list.map(c => `- [${c.klant} – ${c.project}](${SITE_URL}/portfolio/${c.slug}/): ${cut(c.tekst[0], 200)}`).join("\n")).join("\n")}
