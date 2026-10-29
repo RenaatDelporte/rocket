@@ -97,7 +97,8 @@ const KLANTEN = [
   ["Baeyens","img/klanten/baeyens.png",""],
   ["Solva","img/klanten/solva.png","https://www.so-lva.be/"],
   ["DB-Decoteam.be","img/klanten/db-decoteam.png",""],
-  ["Camperhandel Uyttendaele Pieter","img/klanten/camperhandel-uyttendaele.png",""]
+  ["Camperhandel Uyttendaele Pieter","img/klanten/camperhandel-uyttendaele.png",""],
+  ["Steven David","img/klanten/steven-david.png",""]
 ];
 
 /* Contactformulier: adres van je formulierdienst (bv. Formspree). Leeg = niets wordt verzonden. */

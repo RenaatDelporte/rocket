@@ -132,7 +132,7 @@ header.site.scrolled{box-shadow:0 1px 0 var(--line)}
 .clients-band{background:var(--grey);margin-top:96px;padding-block:56px 64px;overflow:hidden}
 .clients-band h2{font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:36px}
 .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.track{display:flex;width:max-content;animation:marquee 45s linear infinite}
+.track{display:flex;width:max-content;animation:marquee 110s linear infinite}
 .marquee:hover .track{animation-play-state:paused}
 .set{display:flex;align-items:center;gap:clamp(40px,5vw,72px);padding-right:clamp(40px,5vw,72px)}
 .cl{position:relative;display:flex;align-items:center;justify-content:center;height:84px;min-width:110px;text-decoration:none;color:var(--black)}
@@ -276,10 +276,10 @@ footer{background:var(--black);color:var(--white);margin-top:96px}
 <header class="site" id="hdr">
   <div class="wrap bar">
     <ul class="nav-side nav-left">
-      <li><a href="#werk" data-nav="werk">Werk</a></li>
+      <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
       <li><a href="#visie" data-nav="visie">Visie</a></li>
     </ul>
-    <a class="brand" href="#werk" aria-label="Rocket, naar home"><img src="img/logo-rood.png" alt="Rocket" width="560" height="245"></a>
+    <a class="brand" href="#portfolio" aria-label="Rocket, naar home"><img src="img/logo-rood.png" alt="Rocket" width="560" height="245"></a>
     <ul class="nav-side nav-right">
       <li><a href="#contact" data-nav="contact">Contact</a></li>
     </ul>
@@ -293,7 +293,7 @@ footer{background:var(--black);color:var(--white);margin-top:96px}
     <button class="mm-close" id="mm-close" type="button" aria-label="Sluit menu">×</button>
   </div>
   <ul>
-    <li><a href="#werk" data-nav="werk">Werk</a></li>
+    <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
     <li><a href="#visie" data-nav="visie">Visie</a></li>
     <li><a href="#contact" data-nav="contact">Contact</a></li>
   </ul>
@@ -343,7 +343,42 @@ const FB = ["red","black","grey"];
 const IN_PREVIEW = !!window.claude || window.self !== window.top;
 const vimeoId = u => (String(u || "").match(/vimeo\.com\/(?:video\/)?(\d+)/) || [])[1];
 const coverOf = c => c.beelden[0] || c.poster || "";
-const candidates = c => [...c.beelden, c.poster].filter(Boolean);
+/* zolang een beeld nog niet in de map img/ staat, wordt het van de oude website getoond */
+const OUDE_SITE = {
+ "img/projecten/broodnodig-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/IMG_1243-2-scaled.jpg",
+ "img/projecten/solva-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/IMG_4826-scaled.jpg",
+ "img/projecten/solva-2.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/IMG_4580-scaled.jpg",
+ "img/projecten/solva-3.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/IMG_5175-scaled.jpg",
+ "img/projecten/garage-thomas-uyttendaele-2.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/04/Schermafbeelding-2024-04-09-om-11.21.34.png",
+ "img/projecten/garage-thomas-uyttendaele-3.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/04/Schermafbeelding-2024-04-16-om-12.12.26.png",
+ "img/projecten/garage-thomas-uyttendaele-4.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/04/Schermafbeelding-2024-04-16-om-12.12.39.png",
+ "img/projecten/de-boever-outdoor-living-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/05/O7DBF91.png",
+ "img/projecten/vbs-de-vlinderboom-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/05/DEVLINDERBOOM.png",
+ "img/projecten/caenepeel-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/05/caenepeel.png",
+ "img/projecten/jo-mode-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/04/65734.png",
+ "img/projecten/de-boever-advertentie-1.jpg": "https://www-static.wearerocket.be/wp-content/uploads/2024/04/DBRD.png",
+ "img/films/pilz.jpg": "https://i.vimeocdn.com/video/1794617920-5f7d874625736fa5bc57d9fc9ca8b59cc7cb3d48a5ebf59f23ecca7254f4353e-d_1920x1080",
+ "img/films/solva.jpg": "https://i.vimeocdn.com/video/1926299276-38a100c3dfc782aea44dd639c6b0bd729cf9033390f2093e8cd72313604746a6-d_1920x1080",
+ "img/films/symobo.jpg": "https://i.vimeocdn.com/video/1830372351-4e6b2a82b419886944ba32f63fe7532a42f837981d7f487e4e5a0c9f3ea8cd2c-d_1920x1080",
+ "img/films/rocket.jpg": "https://i.vimeocdn.com/video/1830383404-d64d104e7108136734b81b8974760140bcb3868013b53771abc7ade6299793b4-d_1920x1080",
+ "img/klanten/de-boever-outdoor-living.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo-150x150.png",
+ "img/klanten/jo-mode.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo2-150x150.png",
+ "img/klanten/bachtekerke.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo3-150x150.png",
+ "img/klanten/de-boever-ramen-deuren.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo4-150x150.png",
+ "img/klanten/i-mens.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo5-150x150.png",
+ "img/klanten/pilz.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo6-150x150.png",
+ "img/klanten/vishandel-boel.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-14-150x150.png",
+ "img/klanten/garage-thomas-uyttendaele.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-13-150x150.png",
+ "img/klanten/hoeveslagerij-van-den-vreken.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-12-150x150.png",
+ "img/klanten/van-hessen.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-1-150x150.png",
+ "img/klanten/growthru.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten-150x150.png",
+ "img/klanten/baeyens.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2-150x150.png",
+ "img/klanten/solva.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3-150x150.png",
+ "img/klanten/db-decoteam.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4-150x150.png",
+ "img/klanten/camperhandel-uyttendaele.png": "https://www-static.wearerocket.be/wp-content/uploads/2024/09/uyt-150x150.png"
+};
+const withOld = s => [s, OUDE_SITE[s]].filter(Boolean);
+const candidates = c => [...c.beelden, c.poster].filter(Boolean).flatMap(withOld);
 /* beeld met reserves: lukt het eerste niet, dan het volgende */
 function nextSrc(img){ const alts = (img.dataset.alt || "").split("|").filter(Boolean); if (alts.length){ img.src = alts.shift(); img.dataset.alt = alts.join("|"); return true; } return false; }
 const altAttr = list => list.length > 1 ? ` data-alt="${esc(list.slice(1).join("|"))}"` : "";
@@ -416,12 +451,12 @@ function pageCase(c){
     const go = IN_PREVIEW || !id
       ? `<a class="go" href="${esc(c.video)}" target="_blank" rel="noopener">${label}</a>`
       : `<button class="go" type="button" data-vimeo="${esc(id)}">${label}</button>`;
-    const alt = c.poster && cover ? cover : "";
-    top = `<div class="player">${poster ? `<img class="poster" src="${esc(poster)}" data-alt="${esc(alt)}" alt="" onerror="if(this.dataset.alt){this.src=this.dataset.alt;this.dataset.alt=''}else{this.remove()}">` : ""}${go}</div>
+    const plist = [c.poster, cover].filter(Boolean).flatMap(withOld);
+    top = `<div class="player">${plist.length ? `<img class="poster" src="${esc(plist[0])}"${altAttr(plist)} alt="" onerror="nextSrc(this)||this.remove()">` : ""}${go}</div>
       <p class="player-note">${IN_PREVIEW ? "In deze voorbeeldweergave opent de film op Vimeo. Op je website speelt hij hier af." : `Speelt de film niet af? <a href="${esc(c.video)}" target="_blank" rel="noopener">Bekijk hem op Vimeo</a>.`}</p>`;
     rest = c.beelden;
   } else if (cover){
-    top = `<div class="cover"><img class="main" src="${esc(cover)}"${altAttr(c.beelden)} alt="${esc(c.klant)} – ${esc(c.project)}" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><div class="fb red"><img src="${MARK_WHITE}" alt=""></div></div>`;
+    top = `<div class="cover"><img class="main" src="${esc(cover)}"${altAttr(c.beelden.flatMap(withOld))} alt="${esc(c.klant)} – ${esc(c.project)}" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><div class="fb red"><img src="${MARK_WHITE}" alt=""></div></div>`;
   } else if (c.video){
     top = `<a class="videobox" href="${esc(c.video)}" target="_blank" rel="noopener"><span class="in"><span class="pl" aria-hidden="true"></span><span class="label">Bekijk de film op Vimeo</span></span></a>`;
   } else {
@@ -433,10 +468,10 @@ function pageCase(c){
   const links = [
     c.website ? `<a class="btn line" href="${esc(c.website)}" target="_blank" rel="noopener">Bekijk de website</a>` : ""
   ].join("");
-  const gallery = rest.length ? `<section class="wrap"><div class="gallery">${rest.map((s,k)=>`<figure class="${rest.length%2 && k===0 ? "wide":""}"><img src="${esc(s)}" alt="${esc(c.klant)}" loading="lazy" onerror="this.parentNode.remove()"></figure>`).join("")}</div></section>` : "";
+  const gallery = rest.length ? `<section class="wrap"><div class="gallery">${rest.map((s,k)=>`<figure class="${rest.length%2 && k===0 ? "wide":""}"><img src="${esc(s)}"${altAttr(withOld(s))} alt="${esc(c.klant)}" loading="lazy" onerror="nextSrc(this)||this.parentNode.remove()"></figure>`).join("")}</div></section>` : "";
   const more = [1,2,3].map(n => CASES[(i+n) % CASES.length]);
   return `
-  <div class="wrap"><a class="back" href="#werk">← Alle projecten</a></div>
+  <div class="wrap"><a class="back" href="#portfolio">← Alle projecten</a></div>
   <header class="wrap p-head">
     <span class="label">${esc(c.discipline)}</span>
     <h1>${esc(c.klant)}</h1>
@@ -449,7 +484,7 @@ function pageCase(c){
   </section>
   ${gallery}
   <section class="wrap more">
-    <div class="more-head"><h2>Meer werk</h2><a href="#werk">Alle projecten →</a></div>
+    <div class="more-head"><h2>Meer werk</h2><a href="#portfolio">Alle projecten →</a></div>
     <div class="tiles three">${more.map(m => tile(m, CASES.indexOf(m))).join("")}</div>
   </section>`;
 }
@@ -462,7 +497,7 @@ function pageVisie(){
       <p class="lede" style="margin-bottom:24px">Wij zijn ervan overtuigd dat <b>elk bedrijf specifiek en uniek</b> is. Daarom hanteren wij voor elk product, merk of dienst een <b>op maat gemaakte aanpak</b>.</p>
       <p>In de eerste fase luisteren wij aandachtig naar uw smaak, voorkeuren en wensen. Zodra wij een goed begrip hebben van de voor u geschikte communicatieoplossing, gaan wij direct aan de slag. Wij <b>selecteren de experts</b> die het beste passen bij uw <b>specifieke behoeften</b> en zorgen voor een <b>optimale uitvoering</b> van uw project.</p>
       <p>Wij houden ervan om even aan tafel te schuiven om te luisteren. Want de basis van Rocket en van al onze realisaties zijn <b>mensen en hun verhaal</b>. Daarom, bel ons gerust voor een project of een koffie, of thee. Of alletwee.</p>
-      <p style="margin-top:28px"><a class="btn" href="#werk">Bekijk ons werk</a></p>
+      <p style="margin-top:28px"><a class="btn" href="#portfolio">Bekijk het portfolio</a></p>
     </div>
     <div class="statement"><img src="${MARK_WHITE}" alt=""></div>
   </section>`;
@@ -471,7 +506,7 @@ function pageVisie(){
 function clientsBand(){
   const item = ([n,img,url]) => {
     const tag = url ? "a" : "span", attrs = url ? ` href="${esc(url)}" target="_blank" rel="noopener"` : "";
-    return `<${tag} class="cl"${attrs} title="${esc(n)}"><img src="${esc(/^(https?:|img\/)/.test(img) ? img : U + img)}" alt="${esc(n)}" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
+    return `<${tag} class="cl"${attrs} title="${esc(n)}"><img src="${esc(img)}"${altAttr(withOld(img))} alt="${esc(n)}" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
   };
   const set = KLANTEN.map(item).join("");
   return `<section class="clients-band" id="klanten" aria-labelledby="kl-title">
@@ -564,14 +599,14 @@ function bindForm(){
 }
 
 /* Router */
-const PAGES = { werk:[pageWerk,"Werk"], visie:[pageVisie,"Visie"], contact:[pageContact,"Contact"] };
+const PAGES = { portfolio:[pageWerk,"Portfolio"], werk:[pageWerk,"Portfolio"], visie:[pageVisie,"Visie"], contact:[pageContact,"Contact"] };
 function route(){
   clearTimeout(heroTimer);
-  const h = decodeURIComponent(location.hash.slice(1)) || "werk";
+  const h = decodeURIComponent(location.hash.slice(1)) || "portfolio";
   const c = CASES.find(x => x.slug === h);
-  let navKey = "werk", title;
+  let navKey = "portfolio", title;
   if (c){ view.innerHTML = pageCase(c); title = `${c.klant} – ${c.project}`; }
-  else if (PAGES[h]){ view.innerHTML = PAGES[h][0](); navKey = h; title = PAGES[h][1]; }
+  else if (PAGES[h]){ view.innerHTML = PAGES[h][0](); navKey = h === "werk" ? "portfolio" : h; title = PAGES[h][1]; }
   else { view.innerHTML = pageWerk(); }
   document.querySelectorAll("[data-nav]").forEach(a => a.dataset.nav === navKey ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current"));
   document.title = title ? `${title} · Rocket` : "Rocket · Let's fly together";
