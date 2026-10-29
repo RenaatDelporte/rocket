@@ -48,7 +48,7 @@ const CASES = [
   { slug:"cafe-parti", klant:"Café Parti", project:"Website", discipline:"Webdesign", partner:"Atelier 46",
     tekst:["Café Parti is een resto-café in Gent, vlakbij het Sint-Pietersstation. Je kan er terecht voor een ontspannen lunch of diner met <b>verse, huisbereide gerechten</b>, en in de tuin waan je je even op vakantie.",
            "Samen met Atelier 46 bouwden we een <b>overzichtelijke website</b> waar je meteen de weeklunch, de openingsuren en alle praktische info vindt."],
-    beelden:["img/projecten/cafe-parti-1.jpg"], website:"https://restocafeparti.be/" },
+    beelden:["img/projecten/cafe-parti-1.jpg","img/projecten/cafe-parti-2.jpg"], website:"https://restocafeparti.be/" },
   { slug:"i-mens", klant:"i-mens", project:"Fotoshoot", discipline:"Fotografie", partner:"Atelier 46 & Kurt Stallaert",
     tekst:["In opdracht van <b>i-mens</b> &amp; Atelier 46 coördineerden wij, in samenwerking met <b>Kurt Stallaert</b>, een fotoshoot die de essentie van hun werk belicht.",
            "De focus lag op het vastleggen van <b>dagdagelijkse situaties</b>, waarbij i-mens medewerkers samen met patiënten in beeld zijn gebracht. Deze beelden dienen ter ondersteuning van de interne communicatie van i-mens."],
