@@ -88,7 +88,7 @@ const KLANTEN = [
   ["De Boever Ramen & Deuren","img/klanten/de-boever-ramen-deuren.png","https://tomdeboever.be/"],
   ["i-mens","img/klanten/i-mens.png","https://www.i-mens.be/"],
   ["Pilz","img/klanten/pilz.png","https://www.pilz.com/nl-BE"],
-  ["Vishandel Boel","img/klanten/vishandel-boel.svg","https://vishandelboel.be/"],
+  ["Vishandel Boel","img/klanten/vishandel-boel.png","https://vishandelboel.be/"],
   ["Garage Thomas Uyttendaele","img/klanten/garage-thomas-uyttendaele.png","https://www.garageuyttendaelethomas.be/"],
   ["Hoeveslagerij Van Den Vreken","img/klanten/hoeveslagerij-van-den-vreken.png","https://vandenvreken.be/"],
   ["Van Hessen Belgium","img/klanten/van-hessen.png","https://www.vanhessen.com/fr/contact/"],
