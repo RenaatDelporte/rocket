@@ -136,7 +136,7 @@ header.site.scrolled{box-shadow:0 1px 0 var(--line)}
 .marquee:hover .track{animation-play-state:paused}
 .set{display:flex;align-items:center;gap:clamp(40px,5vw,72px);padding-right:clamp(40px,5vw,72px)}
 .cl{position:relative;display:flex;align-items:center;justify-content:center;height:84px;min-width:110px;text-decoration:none;color:var(--black)}
-.cl img{max-height:76px;max-width:170px;object-fit:contain;filter:grayscale(1);mix-blend-mode:multiply;opacity:.8;transition:filter .2s,opacity .2s}
+.cl img{max-height:64px;max-width:180px;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .2s,opacity .2s}
 a.cl:hover img{filter:none;opacity:1}
 .cl .nm{font-family:var(--title);font-weight:800;font-size:1.05rem;white-space:nowrap;letter-spacing:.01em}
 a.cl:hover .nm{color:var(--red)}
@@ -506,7 +506,7 @@ function pageVisie(){
 function clientsBand(){
   const item = ([n,img,url]) => {
     const tag = url ? "a" : "span", attrs = url ? ` href="${esc(url)}" target="_blank" rel="noopener"` : "";
-    return `<${tag} class="cl"${attrs} title="${esc(n)}"><img src="${esc(img)}"${altAttr(withOld(img))} alt="${esc(n)}" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
+    return `<${tag} class="cl"${attrs} title="${esc(n)}"><img src="${esc(img)}"${altAttr(withOld(img))} alt="${esc(n)}" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
   };
   const set = KLANTEN.map(item).join("");
   return `<section class="clients-band" id="klanten" aria-labelledby="kl-title">
