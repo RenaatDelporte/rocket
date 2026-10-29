@@ -25,11 +25,16 @@ const HERO_SECONDS = 6;
      video: "https://vimeo.com/123456", // optioneel: de film speelt af op de projectpagina
      poster: "img/films/naam.jpg",      // optioneel: startbeeld van de film
      duur: "1:19",                      // optioneel: lengte van de film
+     binnenkort: true,                  // optioneel: toont "Binnenkort" op de tegel
      website: "https://klant.be",       // optioneel
      partner: "Atelier 46"              // optioneel
    },
    ================================================================== */
 const CASES = [
+  { slug:"ggz-ads", klant:"Netwerk Geestelijke Gezondheid", project:"Animatievideo", discipline:"Video", binnenkort:true,
+    tekst:["Een animatievideo voor het Netwerk Geestelijke Gezondheid Aalst Dendermonde Sint-Niklaas (GGZ ADS).",
+           "De film verschijnt binnenkort."],
+    beelden:["img/projecten/ggz-ads-1.jpg"] },
   { slug:"i-mens", klant:"i-mens", project:"Fotoshoot", discipline:"Fotografie", partner:"Atelier 46 & Kurt Stallaert",
     tekst:["In opdracht van <b>i-mens</b> &amp; Atelier 46 coördineerden wij, in samenwerking met <b>Kurt Stallaert</b>, een fotoshoot die de essentie van hun werk belicht.",
            "De focus lag op het vastleggen van <b>dagdagelijkse situaties</b>, waarbij i-mens medewerkers samen met patiënten in beeld zijn gebracht. Deze beelden dienen ter ondersteuning van de interne communicatie van i-mens."],
@@ -87,6 +92,7 @@ const KLANTEN = [
   ["Bachtecafé","img/klanten/bachtecafe.svg",""],
   ["De Boever Ramen & Deuren","img/klanten/de-boever-ramen-deuren.png","https://tomdeboever.be/"],
   ["i-mens","img/klanten/i-mens.png","https://www.i-mens.be/"],
+  ["Netwerk Geestelijke Gezondheid","img/klanten/netwerk-geestelijke-gezondheid.png",""],
   ["Pilz","img/klanten/pilz.png","https://www.pilz.com/nl-BE"],
   ["Vishandel Boel","img/klanten/vishandel-boel.png","https://vishandelboel.be/"],
   ["Garage Thomas Uyttendaele","img/klanten/garage-thomas-uyttendaele.png","https://www.garageuyttendaelethomas.be/"],

@@ -123,6 +123,7 @@ header.site.scrolled{box-shadow:0 1px 0 var(--line)}
 .ph .play{position:absolute;right:16px;bottom:16px;width:52px;height:52px;border-radius:50%;background:var(--white);display:grid;place-items:center;z-index:2;transition:transform .2s ease}
 .ph .play::before{content:"";border-left:14px solid var(--red);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
 .tile:hover .play{transform:scale(1.08)}
+.ph .soon{position:absolute;left:16px;top:16px;z-index:2;font:700 .72rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:9px 12px;border-radius:4px;background:var(--red);color:var(--white)}
 .cap{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
 .cap .who{min-width:0}
 .cap h3{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;line-height:1.25}
@@ -390,7 +391,7 @@ function tile(c, i){
   const list = candidates(c);
   const img = list.length ? `<img src="${esc(list[0])}"${altAttr(list)} alt="" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()">` : "";
   return `<a class="tile" href="#${esc(c.slug)}">
-    <div class="ph">${img}<div class="fb ${FB[i%3]}"><img src="${fbMark(i)}" alt=""></div>${c.video ? `<span class="play" aria-hidden="true"></span>` : ""}</div>
+    <div class="ph">${img}<div class="fb ${FB[i%3]}"><img src="${fbMark(i)}" alt=""></div>${c.video ? `<span class="play" aria-hidden="true"></span>` : ""}${c.binnenkort ? `<span class="soon">Binnenkort</span>` : ""}</div>
     <div class="cap"><div class="who"><h3>${esc(c.klant)}</h3><p>${esc(c.project)}</p></div><span class="cat label">${esc(c.discipline)}</span></div>
   </a>`;
 }
