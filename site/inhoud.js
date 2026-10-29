@@ -84,6 +84,7 @@ const CASES = [
 /* KLANTEN — naam, logo, website. Verschijnen in de band onder de projecten. */
 const KLANTEN = [
   ["Bachtekerke","img/klanten/bachtekerke.png","https://bachtekerke.be/"],
+  ["Bachtecafé","img/klanten/bachtecafe.svg",""],
   ["De Boever Ramen & Deuren","img/klanten/de-boever-ramen-deuren.png","https://tomdeboever.be/"],
   ["i-mens","img/klanten/i-mens.png","https://www.i-mens.be/"],
   ["Pilz","img/klanten/pilz.png","https://www.pilz.com/nl-BE"],
