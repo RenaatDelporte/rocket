@@ -104,6 +104,7 @@ header.site.scrolled{box-shadow:0 1px 0 var(--line)}
 .intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-block:72px 56px;align-items:end}
 .intro h1{font-size:clamp(1.8rem,3.6vw,3rem)}
 .intro p{margin:0;color:var(--muted);max-width:50ch}
+.intro-txt{display:grid;gap:22px;justify-items:start}
 @media (max-width:860px){.intro{grid-template-columns:1fr;gap:16px;padding-block:44px 32px}}
 
 /* ---------- Tegels ---------- */
@@ -277,7 +278,6 @@ footer{background:var(--black);color:var(--white);margin-top:96px}
   <div class="wrap bar">
     <ul class="nav-side nav-left">
       <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
-      <li><a href="#visie" data-nav="visie">Visie</a></li>
     </ul>
     <a class="brand" href="#portfolio" aria-label="Rocket, naar home"><img src="img/logo-rood.png" alt="Rocket" width="560" height="245"></a>
     <ul class="nav-side nav-right">
@@ -294,7 +294,6 @@ footer{background:var(--black);color:var(--white);margin-top:96px}
   </div>
   <ul>
     <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
-    <li><a href="#visie" data-nav="visie">Visie</a></li>
     <li><a href="#contact" data-nav="contact">Contact</a></li>
   </ul>
   <div class="mm-foot">
@@ -431,7 +430,10 @@ function pageWerk(){
   <section class="hero" aria-label="Uitgelicht werk">${heroHTML()}<div class="panel"><img src="${LOGO_WHITE}" alt="Rocket" width="900" height="393"></div></section>
   <section class="wrap intro">
     <h1>Wij helpen lokale organisaties en ondernemers met bedrijfscommunicatie op maat.</h1>
-    <p>Elk bedrijf is specifiek en uniek. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>
+    <div class="intro-txt">
+      <p>Elk bedrijf is specifiek en uniek. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>
+      <a class="btn line" href="#visie">Onze visie <span aria-hidden="true">→</span></a>
+    </div>
   </section>
   <section class="wrap" aria-label="Projecten"><div class="tiles">${CASES.map(tile).join("")}</div></section>
   ${clientsBand()}

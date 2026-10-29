@@ -18,7 +18,12 @@ Zo blijft alles werken, ook als de oude site verdwijnt.
 
 ## Hosting
 
-- **Nu:** GitHub Pages.
-- **Domein wearerocket.be:** zet `wearerocket.be` in `site/CNAME` en pas de DNS aan (zie onder). Raak de MX-records niet aan: die zijn voor je e-mail.
-  - `wearerocket.be` → A-records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-  - `www.wearerocket.be` → CNAME `renaatdelporte.github.io`
+- **Nu:** GitHub Pages (Settings → Pages → Source: *GitHub Actions*).
+- **Domein wearerocket.be koppelen:**
+  1. Settings → Pages → Custom domain: `wearerocket.be` → Save.
+  2. Bij de domeinbeheerder, in de DNS van wearerocket.be:
+     - `wearerocket.be`: vervang de A-records door `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` (en verwijder eventuele AAAA-records).
+     - `www.wearerocket.be`: CNAME naar `renaatdelporte.github.io`.
+     - Laat de MX- en TXT-records staan: die zijn voor je e-mail.
+  3. Zodra GitHub het domein herkent: vink *Enforce HTTPS* aan.
+- Zeg het oude hostingpakket pas op als je zeker bent dat je e-mail daar niet op draait.
