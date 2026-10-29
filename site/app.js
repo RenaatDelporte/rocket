@@ -102,9 +102,10 @@ function pageCase(c){
     var label = '<span class="pl" aria-hidden="true"></span><span class="label">Speel de film af' + (c.duur ? " · " + esc(c.duur) : "") + '</span>';
     var go = IN_PREVIEW || !id
       ? '<a class="go" href="' + esc(c.video) + '" target="_blank" rel="noopener">' + label + '</a>'
-      : '<button class="go" type="button" data-vimeo="' + esc(id) + '" aria-label="Speel de film ' + esc(c.klant + " – " + c.project) + ' af">' + label + '</button>';
+      : '<button class="go" type="button" data-vimeo="' + esc(id) + '" data-title="' + esc(c.klant + " – " + c.project) + '" aria-label="Speel de film ' + esc(c.klant + " – " + c.project) + ' af">' + label + '</button>';
     var plist = [c.poster, cover].filter(Boolean);
-    top = '<div class="player">' + (plist.length ? '<img class="poster" src="' + esc(asset(plist[0])) + '"' + altAttr(plist) + ' alt="' + esc("Beeld uit de film " + c.klant + " – " + c.project) + '" onerror="nextSrc(this)||this.remove()">' : "") + go + '</div>' +
+    var ratio = c.formaat === "4:3" ? " r43" : c.formaat === "1:1" ? " r11" : c.formaat === "9:16" ? " r916" : "";
+    top = '<div class="player' + ratio + '">' + (plist.length ? '<img class="poster" src="' + esc(asset(plist[0])) + '"' + altAttr(plist) + ' alt="' + esc("Beeld uit de film " + c.klant + " – " + c.project) + '" onerror="nextSrc(this)||this.remove()">' : "") + go + '</div>' +
       '<p class="player-note">' + (IN_PREVIEW ? "In deze voorbeeldweergave opent de film op Vimeo. Op je website speelt hij hier af." : 'Speelt de film niet af? <a href="' + esc(c.video) + '" target="_blank" rel="noopener">Bekijk hem op Vimeo</a>.') + '</p>';
     rest = c.beelden.filter(function(b){ return b !== poster; });
   } else if (cover){
@@ -168,6 +169,8 @@ function pageContact(){
     '</div>' +
     '<div id="form-wrap">' +
       '<form class="cf" id="cf" novalidate>' +
+        '<div class="field"><label for="onderwerp">Waarvoor neem je contact op?</label>' +
+          '<select id="onderwerp" name="onderwerp"><option>Offerte</option><option>Algemene info</option><option>Afspraak</option></select></div>' +
         '<div class="row">' +
           '<div class="field" id="f-naam"><label for="naam">Naam</label><input id="naam" name="naam" autocomplete="name"><span class="msg" aria-live="polite"></span></div>' +
           '<div class="field"><label for="bedrijf">Bedrijf <span class="opt">(optioneel)</span></label><input id="bedrijf" name="bedrijf" autocomplete="organization"></div>' +
@@ -177,9 +180,9 @@ function pageContact(){
           '<div class="field"><label for="tel">Telefoon <span class="opt">(optioneel)</span></label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>' +
         '</div>' +
         '<fieldset class="field"><legend>Waarmee kunnen we helpen?</legend><div class="picks">' + picks + '</div></fieldset>' +
-        '<div class="field"><label for="timing">Wanneer wil je starten?</label>' +
+        '<div class="field" id="f-timing"><label for="timing">Wanneer wil je starten?</label>' +
           '<select id="timing" name="timing"><option>Zo snel mogelijk</option><option>Binnen 1 à 3 maanden</option><option>Later dit jaar</option><option>Eerst even kennismaken</option></select></div>' +
-        '<div class="field" id="f-bericht"><label for="bericht">Vertel kort over je project</label><textarea id="bericht" name="bericht"></textarea><span class="msg" aria-live="polite"></span></div>' +
+        '<div class="field" id="f-bericht"><label for="bericht" id="l-bericht">Vertel kort over je project</label><textarea id="bericht" name="bericht"></textarea><span class="msg" aria-live="polite"></span></div>' +
         '<div class="submit-row"><small>We antwoorden binnen 2 werkdagen.</small><button class="btn" type="submit">Verstuur bericht</button></div>' +
       '</form>' +
     '</div>' +
@@ -213,6 +216,10 @@ function heroStart(){
 function bindForm(){
   var form = $("#cf"); if (!form) return;
   function setErr(id, msg){ var f = $(id); f.classList.toggle("err", !!msg); f.querySelector(".msg").textContent = msg || ""; }
+  var LABELS = { "Offerte": "Vertel kort over je project", "Algemene info": "Wat wil je graag weten?", "Afspraak": "Waarover wil je praten, en wanneer past het jou?" };
+  var subj = $("#onderwerp");
+  function onSubject(){ var v = subj.value; $("#l-bericht").textContent = LABELS[v] || LABELS.Offerte; $("#f-timing").hidden = v !== "Offerte"; }
+  subj.addEventListener("change", onSubject); onSubject();
   form.addEventListener("submit", async function(e){
     e.preventDefault();
     var d = new FormData(form);
@@ -223,6 +230,8 @@ function bindForm(){
     setErr("#f-bericht", bericht ? "" : "Vertel ons kort waar het over gaat.");
     if (!naam || !ok || !bericht){ var bad = form.querySelector(".err input, .err textarea"); if (bad) bad.focus(); return; }
     var sent = false;
+    d.set("_subject", "Website Rocket: " + (d.get("onderwerp") || "bericht") + " van " + naam);
+    if (d.get("onderwerp") !== "Offerte") d.delete("timing");
     if (FORM_ENDPOINT){
       try { var r = await fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { Accept: "application/json" } }); sent = r.ok; } catch (err) {}
       if (!sent){ setErr("#f-bericht", "Versturen lukte niet. Mail ons gerust rechtstreeks op renaat@wearerocket.be."); return; }
@@ -271,7 +280,8 @@ function init(){
     var b = e.target.closest && e.target.closest("button.go[data-vimeo]"); if (!b) return;
     var f = document.createElement("iframe");
     f.src = "https://player.vimeo.com/video/" + b.dataset.vimeo + "?autoplay=1&dnt=1&title=0&byline=0&portrait=0&color=cc3333";
-    f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true; f.title = "Film";
+    f.allow = "autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"; f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin"; f.title = b.dataset.title || "Film";
     b.closest(".player").appendChild(f); b.remove();
   });
 

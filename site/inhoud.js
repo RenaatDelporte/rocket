@@ -16,7 +16,7 @@ const HERO_SECONDS = 6;
    CASES — nieuwe case = één blok bijplakken. Bovenaan = eerste tegel.
 
    {
-     slug: "korte-naam",                // uniek, wordt de link (#korte-naam)
+     slug: "korte-naam",                // uniek, wordt de link (wearerocket.be/portfolio/korte-naam/)
      klant: "Naam van de klant",        // onder de tegel, in hoofdletters
      project: "Naam van het project",   // onder de klantnaam
      discipline: "Video",               // Video, Print, Webdesign, Media, Fotografie
@@ -25,6 +25,7 @@ const HERO_SECONDS = 6;
      video: "https://vimeo.com/123456", // optioneel: de film speelt af op de projectpagina
      poster: "img/films/naam.jpg",      // optioneel: startbeeld van de film
      duur: "1:19",                      // optioneel: lengte van de film
+     formaat: "4:3",                    // optioneel: beeldverhouding van de film als die niet 16:9 is (4:3, 1:1 of 9:16)
      datum: "2024-02-06",               // optioneel: publicatiedatum van de film (voor Google)
      binnenkort: true,                  // optioneel: toont "Binnenkort" op de tegel
      website: "https://klant.be",       // optioneel
@@ -42,8 +43,8 @@ const CASES = [
     tekst:["De Boever Reining Horses is een kleinschalige <b>pensionstalling en reiningstal</b> in Vlierzele. Op de binnenpiste met westernbodem wordt er getraind, les gegeven en voorbereid op de shows.",
            "Met Rocket maakten we een <b>sfeervideo</b> die toont waar de stal voor staat: rust, vertrouwen en veel liefde voor paarden.",
            "Filmen met dieren is altijd een uitdaging. Paarden zijn <b>onvoorspelbaar</b> en trekken zich weinig aan van een draaiboek of een camera. Het vraagt geduld, flexibiliteit en vooral veel tijd om net dat ene moment te vangen."],
-    beelden:["img/films/de-boever-reining-horses.jpg"], video:"https://vimeo.com/1240899134",
-    poster:"img/films/de-boever-reining-horses.jpg", website:"https://dbstables.be/" },
+    beelden:["img/projecten/de-boever-reining-horses-1.jpg","img/projecten/de-boever-reining-horses-2.jpg","img/projecten/de-boever-reining-horses-3.jpg"],
+    video:"https://vimeo.com/1240899134", poster:"img/projecten/de-boever-reining-horses-1.jpg", website:"https://dbstables.be/" },
   { slug:"cafe-parti", klant:"Café Parti", project:"Website", discipline:"Webdesign", partner:"Atelier 46",
     tekst:["Café Parti is een resto-café in Gent, vlakbij het Sint-Pietersstation. Je kan er terecht voor een ontspannen lunch of diner met <b>verse, huisbereide gerechten</b>, en in de tuin waan je je even op vakantie.",
            "Samen met Atelier 46 bouwden we een <b>overzichtelijke website</b> waar je meteen de weeklunch, de openingsuren en alle praktische info vindt."],
