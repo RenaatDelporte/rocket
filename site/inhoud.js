@@ -83,8 +83,6 @@ const CASES = [
 
 /* KLANTEN — naam, logo, website. Verschijnen in de band onder de projecten. */
 const KLANTEN = [
-  ["De Boever Outdoor Living","img/klanten/de-boever-outdoor-living.png","https://deboeveroutdoor.be/"],
-  ["Jo mode","img/klanten/jo-mode.png","https://jomode.be/"],
   ["Bachtekerke","img/klanten/bachtekerke.png","https://bachtekerke.be/"],
   ["De Boever Ramen & Deuren","img/klanten/de-boever-ramen-deuren.png","https://tomdeboever.be/"],
   ["i-mens","img/klanten/i-mens.png","https://www.i-mens.be/"],
@@ -97,7 +95,6 @@ const KLANTEN = [
   ["Baeyens","img/klanten/baeyens.png",""],
   ["Solva","img/klanten/solva.png","https://www.so-lva.be/"],
   ["DB-Decoteam.be","img/klanten/db-decoteam.png",""],
-  ["Camperhandel Uyttendaele Pieter","img/klanten/camperhandel-uyttendaele.png",""],
   ["Steven David","img/klanten/steven-david.png",""],
   ["Bonne Route","img/klanten/bonne-route.png","https://bonneroute.be/"],
   ["Šecuur","img/klanten/secuur.png",""]

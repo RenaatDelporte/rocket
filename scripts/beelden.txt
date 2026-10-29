@@ -17,8 +17,6 @@ site/img/films/pilz.jpg	https://i.vimeocdn.com/video/1794617920-5f7d874625736fa5
 site/img/films/solva.jpg	https://i.vimeocdn.com/video/1926299276-38a100c3dfc782aea44dd639c6b0bd729cf9033390f2093e8cd72313604746a6-d_1920x1080	https://i.vimeocdn.com/video/1926299276-38a100c3dfc782aea44dd639c6b0bd729cf9033390f2093e8cd72313604746a6-d_1280
 site/img/films/symobo.jpg	https://i.vimeocdn.com/video/1830372351-4e6b2a82b419886944ba32f63fe7532a42f837981d7f487e4e5a0c9f3ea8cd2c-d_1920x1080	https://i.vimeocdn.com/video/1830372351-4e6b2a82b419886944ba32f63fe7532a42f837981d7f487e4e5a0c9f3ea8cd2c-d_1280
 site/img/films/rocket.jpg	https://i.vimeocdn.com/video/1830383404-d64d104e7108136734b81b8974760140bcb3868013b53771abc7ade6299793b4-d_1920x1080	https://i.vimeocdn.com/video/1830383404-d64d104e7108136734b81b8974760140bcb3868013b53771abc7ade6299793b4-d_1280
-site/img/klanten/de-boever-outdoor-living.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo-150x150.png
-site/img/klanten/jo-mode.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo2.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo2-150x150.png
 site/img/klanten/bachtekerke.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo3.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo3-150x150.png
 site/img/klanten/de-boever-ramen-deuren.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo4.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo4-150x150.png
 site/img/klanten/i-mens.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo5.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo5-150x150.png
@@ -31,4 +29,3 @@ site/img/klanten/growthru.png	https://www-static.wearerocket.be/wp-content/uploa
 site/img/klanten/baeyens.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2-150x150.png
 site/img/klanten/solva.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3-150x150.png
 site/img/klanten/db-decoteam.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4-150x150.png
-site/img/klanten/camperhandel-uyttendaele.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/uyt.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/uyt-150x150.png
