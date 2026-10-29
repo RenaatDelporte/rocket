@@ -93,6 +93,7 @@ const KLANTEN = [
   ["Bachtekerke","img/klanten/bachtekerke.png","https://bachtekerke.be/"],
   ["Bachtecafé","img/klanten/bachtecafe.svg",""],
   ["De Boever Ramen & Deuren","img/klanten/de-boever-ramen-deuren.png","https://tomdeboever.be/"],
+  ["De Boever Reining Horses","img/klanten/de-boever-reining-horses.png","https://dbstables.be/"],
   ["i-mens","img/klanten/i-mens.png","https://www.i-mens.be/"],
   ["Netwerk Geestelijke Gezondheid","img/klanten/netwerk-geestelijke-gezondheid.png",""],
   ["Pilz","img/klanten/pilz.png","https://www.pilz.com/nl-BE"],
