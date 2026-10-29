@@ -31,10 +31,9 @@ const HERO_SECONDS = 6;
    },
    ================================================================== */
 const CASES = [
-  { slug:"ggz-ads", klant:"Netwerk Geestelijke Gezondheid", project:"Animatievideo", discipline:"Video", binnenkort:true,
-    tekst:["Een animatievideo voor het Netwerk Geestelijke Gezondheid Aalst Dendermonde Sint-Niklaas (GGZ ADS).",
-           "De film verschijnt binnenkort."],
-    beelden:["img/projecten/ggz-ads-1.jpg"] },
+  { slug:"ggz-ads", klant:"Netwerk Geestelijke Gezondheid", project:"Animatievideo", discipline:"Video",
+    tekst:["Een animatievideo voor het Netwerk Geestelijke Gezondheid Aalst Dendermonde Sint-Niklaas (GGZ ADS)."],
+    beelden:[], video:"https://vimeo.com/1240892524", poster:"img/films/ggz-ads.jpg" },
   { slug:"i-mens", klant:"i-mens", project:"Fotoshoot", discipline:"Fotografie", partner:"Atelier 46 & Kurt Stallaert",
     tekst:["In opdracht van <b>i-mens</b> &amp; Atelier 46 coördineerden wij, in samenwerking met <b>Kurt Stallaert</b>, een fotoshoot die de essentie van hun werk belicht.",
            "De focus lag op het vastleggen van <b>dagdagelijkse situaties</b>, waarbij i-mens medewerkers samen met patiënten in beeld zijn gebracht. Deze beelden dienen ter ondersteuning van de interne communicatie van i-mens."],

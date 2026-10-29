@@ -28,3 +28,5 @@ site/img/klanten/growthru.png	https://www-static.wearerocket.be/wp-content/uploa
 site/img/klanten/baeyens.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2-150x150.png
 site/img/klanten/solva.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3-150x150.png
 site/img/klanten/db-decoteam.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4-150x150.png
+
+site/img/films/ggz-ads.jpg	vimeo:1240892524

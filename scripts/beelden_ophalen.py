@@ -9,6 +9,14 @@ def fetch(url):
     with urllib.request.urlopen(req, timeout=60) as r:
         return r.read()
 
+def vimeo_still(video_id):
+    """Zoekt het startbeeld van een Vimeo-film op en bewaart titel en lengte in scripts/vimeo-info.txt."""
+    import json, re
+    info = json.loads(fetch(f"https://vimeo.com/api/oembed.json?width=1920&url=https://vimeo.com/{video_id}"))
+    with open("scripts/vimeo-info.txt", "a", encoding="utf-8") as f:
+        f.write(f"{video_id}\t{info.get('title','')}\t{info.get('duration','')}s\t{info.get('width','')}x{info.get('height','')}\n")
+    return re.sub(r"-d_\d+(x\d+)?$", "-d_1920x1080", info["thumbnail_url"])
+
 ok = skip = fail = 0
 for line in open("scripts/beelden.txt", encoding="utf-8"):
     line = line.strip()
@@ -20,6 +28,8 @@ for line in open("scripts/beelden.txt", encoding="utf-8"):
         continue
     for url in urls:
         try:
+            if url.startswith("vimeo:"):
+                url = vimeo_still(url.split(":", 1)[1])
             im = ImageOps.exif_transpose(Image.open(io.BytesIO(fetch(url))))
             os.makedirs(os.path.dirname(target), exist_ok=True)
             if target.endswith(".png"):
