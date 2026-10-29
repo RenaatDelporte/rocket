@@ -21,7 +21,6 @@ site/img/klanten/bachtekerke.png	https://www-static.wearerocket.be/wp-content/up
 site/img/klanten/de-boever-ramen-deuren.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo4.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo4-150x150.png
 site/img/klanten/i-mens.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo5.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo5-150x150.png
 site/img/klanten/pilz.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo6.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/klant_logo6-150x150.png
-site/img/klanten/vishandel-boel.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-14.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-14-150x150.png
 site/img/klanten/garage-thomas-uyttendaele.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-13.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-13-150x150.png
 site/img/klanten/hoeveslagerij-van-den-vreken.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-12.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-12-150x150.png
 site/img/klanten/van-hessen.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-1.png	https://www-static.wearerocket.be/wp-content/uploads/2024/08/Naamloos-1-150x150.png
