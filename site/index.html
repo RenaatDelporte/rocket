@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rocket – Bedrijfscommunicatie op maat</title>
+<meta name="description" content="Rocket helpt lokale organisaties en ondernemers met bedrijfscommunicatie op maat: video, print, webdesign en fotografie.">
+<meta name="theme-color" content="#cc3333">
+<link rel="icon" href="img/streepjes-rood.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Lato:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: portfolio eerst. Gesplitst menu met logo in het midden, hero (video of rood merkvlak), grote fototegels in 2 kolommen, projectpagina per case.
+   Huisstijl volgens brandguide: Rocket Red, Rocket Black, Rocket Grey. Titels in Mont Heavy (hier Montserrat als webvervanger), tekst in Lato.
+   Bewust één lichte look, zoals de merkpresentatie. */
+:root{
+  --white:#ffffff;
+  --black:#000000;
+  --grey:#f6f6f6;
+  --red:#cc3333;
+  --muted:#5c5c5c;
+  --line:#e4e4e4;
+  --title:"Mont", "Montserrat", "Arial Black", system-ui, sans-serif;
+  --body:"Lato", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --wrap:1320px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+body{background:var(--white);color:var(--black);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+[hidden]{display:none!important}
+html,body{margin:0}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--title);font-weight:800;line-height:1.05;letter-spacing:-.01em;text-wrap:balance;margin:0}
+.label{font:700 .75rem/1.2 var(--body);letter-spacing:.16em;text-transform:uppercase}
+
+/* ---------- Header: logo midden, menu links en rechts ---------- */
+header.site{position:sticky;top:env(safe-area-inset-top, 0px);z-index:30;background:var(--white);transition:box-shadow .2s ease}
+header.site.scrolled{box-shadow:0 1px 0 var(--line)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding-block:18px}
+.nav-side{display:flex;gap:44px;list-style:none;margin:0;padding:0}
+.nav-left{justify-content:flex-end;padding-right:56px}
+.nav-right{justify-content:flex-start;padding-left:56px}
+.nav-side a{position:relative;display:inline-block;text-decoration:none;font:700 .8rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;padding:10px 0}
+.nav-side a::after{content:"";position:absolute;left:50%;bottom:0;width:22px;height:5px;border-radius:3px;background:var(--red);transform:translateX(-50%) skewX(-40deg) scaleX(0);transition:transform .2s ease}
+.nav-side a:hover::after,.nav-side a[aria-current="page"]::after{transform:translateX(-50%) skewX(-40deg) scaleX(1)}
+.brand{display:block;line-height:0}
+.brand img{height:46px;width:auto}
+.burger{display:none;justify-self:end;width:46px;height:46px;border:0;background:none;cursor:pointer;padding:10px;color:var(--black)}
+.burger span{display:block;height:3px;border-radius:2px;background:currentColor;margin:5px 0;transition:transform .2s ease, opacity .2s ease}
+@media (max-width:860px){
+  .bar{grid-template-columns:46px 1fr 46px;padding-block:12px}
+  .nav-side{display:none}
+  .brand{grid-column:2;justify-self:center}
+  .brand img{height:38px}
+  .burger{display:block;grid-column:3}
+}
+
+/* Mobiel menu */
+.mobile-menu{position:fixed;inset:0;z-index:40;background:var(--red);color:var(--white);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top, 0px) + 12px);padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 28px);padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.mm-top{display:grid;grid-template-columns:46px 1fr 46px;align-items:center}
+.mm-top img{height:38px;width:auto;grid-column:2;justify-self:center}
+.mm-close{grid-column:3;width:46px;height:46px;border:0;background:none;color:var(--white);font-size:2rem;line-height:1;cursor:pointer}
+.mobile-menu ul{list-style:none;margin:auto 0;padding:0;display:grid;gap:6px}
+.mobile-menu ul a{font-family:var(--title);font-weight:800;font-size:clamp(2.2rem,11vw,3.4rem);text-decoration:none;line-height:1.15;display:inline-block}
+.mobile-menu ul a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:8px}
+.mm-foot{display:grid;gap:4px;font-size:.95rem}
+.mm-foot img{width:110px;height:auto;margin-bottom:14px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;background:var(--red);overflow:hidden;aspect-ratio:16/7;max-height:78vh;min-height:360px;width:100%}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+.hero .panel{position:absolute;inset:0;display:grid;place-items:center;padding:24px}
+.hero .panel img{width:min(560px,70%);height:auto}
+.hero.has-video .panel,.hero.has-slides .panel{display:none}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;z-index:1;display:block;color:var(--white);text-decoration:none;pointer-events:none}
+.slide.on{opacity:1;z-index:2;pointer-events:auto}
+.slide:focus-visible{outline:3px solid var(--white);outline-offset:-6px}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
+.slide.on img{animation:kb 7s ease-out forwards}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.62) 100%)}
+.slide .cap-h{position:absolute;left:0;right:0;bottom:0;z-index:3;padding-bottom:clamp(20px,4vw,44px)}
+.slide .cap-h .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;color:var(--white)}
+.slide .cap-h .label{color:var(--white);opacity:.85}
+.slide .cap-h h2{font-size:clamp(1.5rem,3.6vw,2.8rem);margin-top:8px}
+.slide .cap-h p{margin:4px 0 0;font-size:clamp(1rem,1.6vw,1.2rem)}
+.slide:hover h2{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.more-btn{flex:none;display:inline-flex;align-items:center;gap:10px;font:700 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:16px 22px;border-radius:4px;background:var(--red);color:var(--white);transition:transform .2s ease}
+.slide:hover .more-btn{transform:translateX(4px)}
+.ticks{position:absolute;z-index:4;right:max(20px, env(safe-area-inset-right, 0px));top:20px;display:flex;gap:8px}
+.ticks button{width:30px;height:9px;border:0;padding:0;border-radius:3px;background:rgba(255,255,255,.4);transform:skewX(-40deg);cursor:pointer;overflow:hidden;position:relative}
+.ticks button span{position:absolute;inset:0;background:var(--red);transform-origin:left;transform:scaleX(0)}
+.ticks button.done span{transform:scaleX(1)}
+.ticks button.on span{animation:fill var(--dur,6s) linear forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (max-width:600px){.hero{aspect-ratio:4/5;max-height:none}.slide .cap-h .wrap{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion: reduce){.slide.on img{animation:none}}
+
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-block:72px 56px;align-items:end}
+.intro h1{font-size:clamp(1.8rem,3.6vw,3rem)}
+.intro p{margin:0;color:var(--muted);max-width:50ch}
+@media (max-width:860px){.intro{grid-template-columns:1fr;gap:16px;padding-block:44px 32px}}
+
+/* ---------- Tegels ---------- */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(20px,3.5vw,48px);row-gap:clamp(40px,5vw,72px)}
+.tiles.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:860px){.tiles.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.tiles,.tiles.three{grid-template-columns:minmax(0,1fr)}}
+.tile{display:flex;flex-direction:column;gap:16px;text-decoration:none;min-width:0}
+.ph{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;background:var(--grey)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.tile:hover .ph img{transform:scale(1.04)}
+.ph .fb{position:absolute;inset:0;display:grid;place-items:center}
+.ph .fb img{position:static;width:min(42%,220px);height:auto;transform:none!important}
+.fb.red{background:var(--red)} .fb.black{background:var(--black)} .fb.grey{background:var(--grey)}
+.ph.loaded .fb{display:none}
+.ph .play{position:absolute;right:16px;bottom:16px;width:52px;height:52px;border-radius:50%;background:var(--white);display:grid;place-items:center;z-index:2;transition:transform .2s ease}
+.ph .play::before{content:"";border-left:14px solid var(--red);border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+.tile:hover .play{transform:scale(1.08)}
+.cap{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.cap .who{min-width:0}
+.cap h3{font-size:1rem;letter-spacing:.04em;text-transform:uppercase;line-height:1.25}
+.cap p{margin:4px 0 0;color:var(--muted);font-size:1rem;line-height:1.4}
+.cap .cat{flex:none;color:var(--red)}
+.tile:hover h3{color:var(--red)}
+
+.clients-band{background:var(--grey);margin-top:96px;padding-block:56px 64px;overflow:hidden}
+.clients-band h2{font-size:clamp(1.3rem,2.4vw,1.9rem);margin-bottom:36px}
+.marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.track{display:flex;width:max-content;animation:marquee 45s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.set{display:flex;align-items:center;gap:clamp(40px,5vw,72px);padding-right:clamp(40px,5vw,72px)}
+.cl{position:relative;display:flex;align-items:center;justify-content:center;height:84px;min-width:110px;text-decoration:none;color:var(--black)}
+.cl img{max-height:76px;max-width:170px;object-fit:contain;filter:grayscale(1);mix-blend-mode:multiply;opacity:.8;transition:filter .2s,opacity .2s}
+a.cl:hover img{filter:none;opacity:1}
+.cl .nm{font-family:var(--title);font-weight:800;font-size:1.05rem;white-space:nowrap;letter-spacing:.01em}
+a.cl:hover .nm{color:var(--red)}
+.cl.loaded .nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.track{animation:none;width:auto}.set[aria-hidden]{display:none}.set{flex-wrap:wrap;justify-content:center;padding-inline:20px}}
+.clients-band + .cta-band{margin-top:0}
+.cta-band{background:var(--black);color:var(--white);margin-top:96px}
+.cta-band .wrap{padding-block:64px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.cta-band h2{font-size:clamp(1.6rem,3.2vw,2.6rem);max-width:20ch}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 .82rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:18px 26px;border-radius:4px;background:var(--red);color:var(--white);text-decoration:none;border:0;cursor:pointer;transition:background .15s ease}
+.btn:hover{background:#b02a2a}
+.btn.line{background:transparent;color:var(--black);box-shadow:inset 0 0 0 2px var(--black)}
+.btn.line:hover{background:var(--black);color:var(--white)}
+
+/* ---------- Projectpagina ---------- */
+.back{display:inline-block;margin-top:36px;text-decoration:none;color:var(--muted)}
+.back:hover{color:var(--red)}
+.p-head{padding-block:28px 40px;display:grid;gap:14px}
+.p-head .label{color:var(--red)}
+.p-head h1{font-size:clamp(2.2rem,6vw,4.6rem)}
+.p-head .proj{font-size:clamp(1.15rem,2vw,1.5rem);color:var(--muted);margin:0}
+.cover{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--grey);overflow:hidden}
+.cover img.main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover .fb{position:absolute;inset:0;display:grid;place-items:center}
+.cover .fb img{width:min(30%,240px);height:auto}
+.cover.loaded .fb{display:none}
+.player{position:relative;aspect-ratio:16/9;max-width:100%;background:var(--black);overflow:hidden}
+.player img.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;transition:opacity .3s ease,transform .6s ease}
+.player .fb{position:absolute;inset:0;display:grid;place-items:center}
+.player .fb img{width:min(26%,200px);height:auto;opacity:.25}
+.player .go{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:16px;border:0;background:none;color:var(--white);cursor:pointer;text-decoration:none;font:inherit;z-index:2}
+.player .go .pl{width:clamp(64px,8vw,92px);height:clamp(64px,8vw,92px);border-radius:50%;background:var(--red);display:grid;place-items:center;transition:transform .2s ease}
+.player .go .pl::before{content:"";border-left:26px solid var(--white);border-top:16px solid transparent;border-bottom:16px solid transparent;margin-left:7px}
+.player .go:hover .pl{transform:scale(1.08)}
+.player .go:hover ~ img.poster,.player:hover img.poster{opacity:.9}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3}
+.player-note{margin:10px 0 0;font-size:.9rem;color:var(--muted)}
+.player-note a{color:var(--red)}
+a.videobox{display:grid;place-items:center;aspect-ratio:16/9;max-width:100%;background:var(--black);color:var(--white);text-decoration:none;position:relative}
+a.videobox .in{display:grid;justify-items:center;gap:18px;text-align:center;padding:20px}
+a.videobox .pl{width:84px;height:84px;border-radius:50%;background:var(--red);display:grid;place-items:center;transition:transform .2s ease}
+a.videobox .pl::before{content:"";border-left:24px solid var(--white);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:6px}
+a.videobox:hover .pl{transform:scale(1.08)}
+.p-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(28px,5vw,80px);padding-block:56px}
+@media (max-width:860px){.p-body{grid-template-columns:minmax(0,1fr);padding-block:36px}}
+dl.facts{margin:0;display:grid;gap:18px;align-content:start}
+dl.facts div{display:grid;gap:4px;border-top:2px solid var(--black);padding-top:10px}
+dl.facts dt{color:var(--muted)}
+dl.facts dd{margin:0;font-weight:700}
+dl.facts dd a{color:var(--red)}
+.p-text{display:grid;gap:28px;align-content:start}
+.p-text p{margin:0;font-size:1.15rem;line-height:1.7;max-width:62ch}
+.p-text b{font-weight:700}
+.p-links{display:flex;gap:12px;flex-wrap:wrap}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
+.gallery figure{margin:0;background:var(--grey)}
+.gallery figure.wide{grid-column:1/-1}
+.gallery img{width:100%;height:auto}
+@media (max-width:600px){.gallery{grid-template-columns:minmax(0,1fr)}}
+.more{padding-block:96px 0}
+.more-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.more-head h2{font-size:clamp(1.5rem,2.6vw,2.2rem)}
+.more-head a{color:var(--red);font-weight:700;text-decoration:none}
+
+/* ---------- Visie / Klanten / Contact ---------- */
+.page-head{padding-block:72px 40px;display:grid;gap:14px}
+.page-head .label{color:var(--red)}
+.page-head h1{font-size:clamp(2.2rem,5.4vw,4.2rem);max-width:18ch}
+.lede{font-size:clamp(1.15rem,1.8vw,1.35rem);line-height:1.6;max-width:60ch;margin:0}
+.visie{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);padding-bottom:40px}
+.visie p{margin:0 0 18px;max-width:58ch}
+.visie b{font-weight:700}
+@media (max-width:860px){.visie{grid-template-columns:minmax(0,1fr)}}
+.statement{background:var(--red);color:var(--white);aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;padding:24px}
+.statement img{width:60%;height:auto}
+
+.logos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;background:var(--white)}
+@media (max-width:860px){.logos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:480px){.logos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.logo-cell{background:var(--grey);aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;padding:18px;text-decoration:none;text-align:center;position:relative}
+.logo-cell img{max-width:76%;max-height:70%;object-fit:contain;filter:grayscale(1);mix-blend-mode:multiply;transition:filter .2s}
+.logo-cell:hover img{filter:none}
+.logo-cell .nm{font-weight:700;font-size:.95rem;line-height:1.25}
+.logo-cell.loaded .nm{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+a.logo-cell:hover .nm{color:var(--red)}
+
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(28px,5vw,80px);padding-bottom:40px}
+@media (max-width:860px){.contact{grid-template-columns:minmax(0,1fr)}}
+.contact p{max-width:46ch}
+.person{display:grid;gap:4px;margin-top:28px;font-size:1.05rem}
+.person strong{font-family:var(--title);font-weight:800;font-size:1.2rem}
+.person a{text-decoration:none}
+.person a:hover{color:var(--red)}
+form.cf{background:var(--grey);padding:clamp(20px,3.5vw,40px);display:grid;gap:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.row{grid-template-columns:1fr}}
+.field{display:grid;gap:7px;min-width:0}
+.field label,.field legend{font-weight:700;font-size:.9rem}
+.opt{font-weight:400;color:var(--muted)}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--black);background:var(--white);border:1px solid var(--line);border-radius:4px;padding:13px 14px;width:100%}
+textarea{min-height:140px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--black);box-shadow:inset 0 0 0 1px var(--black)}
+.field.err input,.field.err textarea{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
+.msg{font-size:.85rem;color:var(--red)}
+.msg:empty{display:none}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:9px}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.picks input{position:absolute;opacity:0;width:1px;height:1px}
+.picks label{font-weight:400;font-size:.95rem;padding:9px 15px;border-radius:999px;border:1px solid var(--line);background:var(--white);cursor:pointer}
+.picks input:checked + label{background:var(--black);border-color:var(--black);color:var(--white)}
+.picks input:focus-visible + label{outline:2px solid var(--red);outline-offset:2px}
+.submit-row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.submit-row small{color:var(--muted)}
+.done{background:var(--grey);padding:clamp(24px,4vw,48px);display:grid;gap:14px}
+.done img{width:120px;height:auto}
+.done h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.done p{margin:0}
+.note{font-size:.85rem;color:var(--muted);border-left:3px solid var(--red);padding-left:12px}
+
+/* ---------- Footer ---------- */
+footer{background:var(--black);color:var(--white);margin-top:96px}
+.cta-band + footer{margin-top:0}
+.foot{padding-block:56px 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:32px}
+@media (max-width:760px){.foot{grid-template-columns:1fr;gap:28px}}
+.foot img{width:150px;height:auto}
+.foot p{margin:14px 0 0;color:#b9b9b9;max-width:32ch}
+.foot h4{margin:0 0 10px;font:700 .75rem/1.2 var(--body);letter-spacing:.16em;text-transform:uppercase;color:#8f8f8f}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--red)}
+.legal{border-top:1px solid #262626}
+.legal .wrap{padding-block:18px;color:#8f8f8f;font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="site" id="hdr">
+  <div class="wrap bar">
+    <ul class="nav-side nav-left">
+      <li><a href="#werk" data-nav="werk">Werk</a></li>
+      <li><a href="#visie" data-nav="visie">Visie</a></li>
+    </ul>
+    <a class="brand" href="#werk" aria-label="Rocket, naar home"><img src="img/logo-rood.png" alt="Rocket" width="560" height="245"></a>
+    <ul class="nav-side nav-right">
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mm" hidden>
+  <div class="mm-top">
+    <img src="img/logo-wit.png" alt="Rocket" width="900" height="393">
+    <button class="mm-close" id="mm-close" type="button" aria-label="Sluit menu">×</button>
+  </div>
+  <ul>
+    <li><a href="#werk" data-nav="werk">Werk</a></li>
+    <li><a href="#visie" data-nav="visie">Visie</a></li>
+    <li><a href="#contact" data-nav="contact">Contact</a></li>
+  </ul>
+  <div class="mm-foot">
+    <img src="img/streepjes-wit.png" alt="" width="400" height="131">
+    <span>renaat@wearerocket.be</span>
+    <span>+32 473 22 18 29</span>
+  </div>
+</div>
+
+<main id="view"></main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="img/logo-wit.png" alt="Rocket" width="900" height="393">
+      <p>Wij helpen lokale ondernemers met bedrijfscommunicatie op maat.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Renaat Delporte</li>
+        <li>Molenhoek 168, 9340 Lede</li>
+        <li><a href="mailto:renaat@wearerocket.be">renaat@wearerocket.be</a></li>
+        <li><a href="tel:+32473221829">+32 473 22 18 29</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Volg ons</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/wearerocket.be/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://vimeo.com/user194300604" target="_blank" rel="noopener">Vimeo</a></li>
+        <li><a href="https://www.linkedin.com/company/rocketbe/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="legal"><div class="wrap">© <span id="yr">2026</span> Rocket · Ond. nr. BE 0797.956.741</div></div>
+</footer>
+
+<script src="inhoud.js"></script>
+<script>
+const MARK_RED = "img/streepjes-rood.png", MARK_WHITE = "img/streepjes-wit.png", LOGO_WHITE = "img/logo-wit.png";
+const $ = s => document.querySelector(s);
+const view = $("#view");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const FB = ["red","black","grey"];
+const IN_PREVIEW = !!window.claude || window.self !== window.top;
+const vimeoId = u => (String(u || "").match(/vimeo\.com\/(?:video\/)?(\d+)/) || [])[1];
+const coverOf = c => c.beelden[0] || c.poster || "";
+const candidates = c => [...c.beelden, c.poster].filter(Boolean);
+/* beeld met reserves: lukt het eerste niet, dan het volgende */
+function nextSrc(img){ const alts = (img.dataset.alt || "").split("|").filter(Boolean); if (alts.length){ img.src = alts.shift(); img.dataset.alt = alts.join("|"); return true; } return false; }
+const altAttr = list => list.length > 1 ? ` data-alt="${esc(list.slice(1).join("|"))}"` : "";
+let heroTimer = null;
+const fbMark = i => FB[i % 3] === "grey" ? MARK_RED : MARK_WHITE;
+
+function tile(c, i){
+  const list = candidates(c);
+  const img = list.length ? `<img src="${esc(list[0])}"${altAttr(list)} alt="" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()">` : "";
+  return `<a class="tile" href="#${esc(c.slug)}">
+    <div class="ph">${img}<div class="fb ${FB[i%3]}"><img src="${fbMark(i)}" alt=""></div>${c.video ? `<span class="play" aria-hidden="true"></span>` : ""}</div>
+    <div class="cap"><div class="who"><h3>${esc(c.klant)}</h3><p>${esc(c.project)}</p></div><span class="cat label">${esc(c.discipline)}</span></div>
+  </a>`;
+}
+
+function heroHTML(){
+  if (HERO_VIDEO) return `<video src="${esc(HERO_VIDEO)}" autoplay muted loop playsinline oncanplay="this.parentNode.classList.add('has-video')" onerror="this.remove()"></video>`;
+  return HERO_MIX.map(s => CASES.find(c => c.slug === s)).filter(c => c && coverOf(c)).map(c => `
+    <a class="slide" href="#${esc(c.slug)}" data-slug="${esc(c.slug)}">
+      <img src="${esc(candidates(c)[0])}"${altAttr(candidates(c))} alt="" onerror="nextSrc(this)||heroDrop(this)">
+      <div class="cap-h"><div class="wrap">
+        <div><span class="label">${esc(c.discipline)}</span><h2>${esc(c.klant)}</h2><p>${esc(c.project)}</p></div>
+        <span class="more-btn">Bekijk project <span aria-hidden="true">→</span></span>
+      </div></div>
+    </a>`).join("") + `<div class="ticks" role="group" aria-label="Kies een project"></div>`;
+}
+function heroDrop(img){ const s = img.closest(".slide"); if (s){ s.remove(); heroStart(); } }
+function heroStart(){
+  clearTimeout(heroTimer);
+  const hero = $(".hero"); if (!hero || HERO_VIDEO) return;
+  const slides = [...hero.querySelectorAll(".slide")];
+  hero.classList.toggle("has-slides", slides.length > 0);
+  const ticks = hero.querySelector(".ticks");
+  if (!slides.length){ if (ticks) ticks.remove(); return; }
+  ticks.style.setProperty("--dur", HERO_SECONDS + "s");
+  ticks.innerHTML = slides.length > 1 ? slides.map((s,k)=>`<button type="button" aria-label="Project ${k+1}"><span></span></button>`).join("") : "";
+  let n = Math.max(0, slides.findIndex(s => s.classList.contains("on")));
+  const show = k => {
+    clearTimeout(heroTimer); n = (k + slides.length) % slides.length;
+    slides.forEach((s,j)=>s.classList.toggle("on", j===n));
+    [...ticks.children].forEach((b,j)=>{ b.classList.toggle("done", j<n); b.classList.remove("on"); void b.offsetWidth; b.classList.toggle("on", j===n); });
+    if (slides.length > 1) heroTimer = setTimeout(()=>show(n+1), HERO_SECONDS*1000);
+  };
+  ticks.onclick = e => { const b = e.target.closest("button"); if (b) show([...ticks.children].indexOf(b)); };
+  show(n);
+}
+
+function pageWerk(){
+  return `
+  <section class="hero" aria-label="Uitgelicht werk">${heroHTML()}<div class="panel"><img src="${LOGO_WHITE}" alt="Rocket" width="900" height="393"></div></section>
+  <section class="wrap intro">
+    <h1>Wij helpen lokale organisaties en ondernemers met bedrijfscommunicatie op maat.</h1>
+    <p>Elk bedrijf is specifiek en uniek. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>
+  </section>
+  <section class="wrap" aria-label="Projecten"><div class="tiles">${CASES.map(tile).join("")}</div></section>
+  ${clientsBand()}
+  <section class="cta-band"><div class="wrap">
+    <h2>Bel ons gerust voor een project of een koffie, of thee. Of alletwee.</h2>
+    <a class="btn" href="#contact">Neem contact op</a>
+  </div></section>`;
+}
+
+function pageCase(c){
+  const i = CASES.indexOf(c);
+  let [cover, ...rest] = c.beelden;
+  let top;
+  if (c.video){
+    const id = vimeoId(c.video), poster = c.poster || cover;
+    const label = `<span class="pl" aria-hidden="true"></span><span class="label">Speel de film af${c.duur ? " · " + esc(c.duur) : ""}</span>`;
+    const go = IN_PREVIEW || !id
+      ? `<a class="go" href="${esc(c.video)}" target="_blank" rel="noopener">${label}</a>`
+      : `<button class="go" type="button" data-vimeo="${esc(id)}">${label}</button>`;
+    const alt = c.poster && cover ? cover : "";
+    top = `<div class="player">${poster ? `<img class="poster" src="${esc(poster)}" data-alt="${esc(alt)}" alt="" onerror="if(this.dataset.alt){this.src=this.dataset.alt;this.dataset.alt=''}else{this.remove()}">` : ""}${go}</div>
+      <p class="player-note">${IN_PREVIEW ? "In deze voorbeeldweergave opent de film op Vimeo. Op je website speelt hij hier af." : `Speelt de film niet af? <a href="${esc(c.video)}" target="_blank" rel="noopener">Bekijk hem op Vimeo</a>.`}</p>`;
+    rest = c.beelden;
+  } else if (cover){
+    top = `<div class="cover"><img class="main" src="${esc(cover)}"${altAttr(c.beelden)} alt="${esc(c.klant)} – ${esc(c.project)}" onload="this.parentNode.classList.add('loaded')" onerror="nextSrc(this)||this.remove()"><div class="fb red"><img src="${MARK_WHITE}" alt=""></div></div>`;
+  } else if (c.video){
+    top = `<a class="videobox" href="${esc(c.video)}" target="_blank" rel="noopener"><span class="in"><span class="pl" aria-hidden="true"></span><span class="label">Bekijk de film op Vimeo</span></span></a>`;
+  } else {
+    top = `<div class="cover"><div class="fb black"><img src="${MARK_WHITE}" alt=""></div></div>`;
+  }
+  const facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", esc(c.discipline)]];
+  if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
+  if (c.website) facts.push(["Website", `<a href="${esc(c.website)}" target="_blank" rel="noopener">${esc(c.website.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a>`]);
+  const links = [
+    c.website ? `<a class="btn line" href="${esc(c.website)}" target="_blank" rel="noopener">Bekijk de website</a>` : ""
+  ].join("");
+  const gallery = rest.length ? `<section class="wrap"><div class="gallery">${rest.map((s,k)=>`<figure class="${rest.length%2 && k===0 ? "wide":""}"><img src="${esc(s)}" alt="${esc(c.klant)}" loading="lazy" onerror="this.parentNode.remove()"></figure>`).join("")}</div></section>` : "";
+  const more = [1,2,3].map(n => CASES[(i+n) % CASES.length]);
+  return `
+  <div class="wrap"><a class="back" href="#werk">← Alle projecten</a></div>
+  <header class="wrap p-head">
+    <span class="label">${esc(c.discipline)}</span>
+    <h1>${esc(c.klant)}</h1>
+    <p class="proj">${esc(c.project)}</p>
+  </header>
+  <div class="wrap">${top}</div>
+  <section class="wrap p-body">
+    <dl class="facts">${facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl>
+    <div class="p-text">${c.tekst.map(t=>`<p>${t}</p>`).join("")}${links ? `<div class="p-links">${links}</div>` : ""}</div>
+  </section>
+  ${gallery}
+  <section class="wrap more">
+    <div class="more-head"><h2>Meer werk</h2><a href="#werk">Alle projecten →</a></div>
+    <div class="tiles three">${more.map(m => tile(m, CASES.indexOf(m))).join("")}</div>
+  </section>`;
+}
+
+function pageVisie(){
+  return `
+  <header class="wrap page-head"><span class="label">Visie</span><h1>Bedrijfscommunicatie op maat</h1></header>
+  <section class="wrap visie">
+    <div>
+      <p class="lede" style="margin-bottom:24px">Wij zijn ervan overtuigd dat <b>elk bedrijf specifiek en uniek</b> is. Daarom hanteren wij voor elk product, merk of dienst een <b>op maat gemaakte aanpak</b>.</p>
+      <p>In de eerste fase luisteren wij aandachtig naar uw smaak, voorkeuren en wensen. Zodra wij een goed begrip hebben van de voor u geschikte communicatieoplossing, gaan wij direct aan de slag. Wij <b>selecteren de experts</b> die het beste passen bij uw <b>specifieke behoeften</b> en zorgen voor een <b>optimale uitvoering</b> van uw project.</p>
+      <p>Wij houden ervan om even aan tafel te schuiven om te luisteren. Want de basis van Rocket en van al onze realisaties zijn <b>mensen en hun verhaal</b>. Daarom, bel ons gerust voor een project of een koffie, of thee. Of alletwee.</p>
+      <p style="margin-top:28px"><a class="btn" href="#werk">Bekijk ons werk</a></p>
+    </div>
+    <div class="statement"><img src="${MARK_WHITE}" alt=""></div>
+  </section>`;
+}
+
+function clientsBand(){
+  const item = ([n,img,url]) => {
+    const tag = url ? "a" : "span", attrs = url ? ` href="${esc(url)}" target="_blank" rel="noopener"` : "";
+    return `<${tag} class="cl"${attrs} title="${esc(n)}"><img src="${esc(/^(https?:|img\/)/.test(img) ? img : U + img)}" alt="${esc(n)}" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
+  };
+  const set = KLANTEN.map(item).join("");
+  return `<section class="clients-band" id="klanten" aria-labelledby="kl-title">
+    <div class="wrap"><h2 id="kl-title">Straffe merken waar wij voor mogen werken.</h2></div>
+    <div class="marquee"><div class="track"><div class="set">${set}</div><div class="set" aria-hidden="true">${set.replace(/<a /g,'<a tabindex="-1" ')}</div></div></div>
+  </section>`;
+}
+
+function pageKlanten(){
+  return `
+  <header class="wrap page-head"><span class="label">Klanten</span><h1>Straffe merken waar wij voor mogen werken.</h1></header>
+  <section class="wrap"><div class="logos">${KLANTEN.map(([n,img,url])=>{
+    const tag = url ? "a" : "div", attrs = url ? ` href="${esc(url)}" target="_blank" rel="noopener"` : "";
+    return `<${tag} class="logo-cell"${attrs}><img src="${esc(U+img)}" alt="" loading="lazy" onload="this.parentNode.classList.add('loaded')" onerror="this.remove()"><span class="nm">${esc(n)}</span></${tag}>`;
+  }).join("")}</div></section>`;
+}
+
+function pageContact(){
+  return `
+  <header class="wrap page-head"><span class="label">Contact</span><h1>Let's talk!</h1></header>
+  <section class="wrap contact">
+    <div>
+      <p class="lede">Wij houden ervan om even aan tafel te schuiven om te luisteren. Bel ons gerust voor een project of een koffie, of thee. Of alletwee.</p>
+      <div class="person">
+        <strong>Renaat Delporte</strong>
+        <span>Rocket HQ, Molenhoek 168, 9340 Lede</span>
+        <a href="mailto:renaat@wearerocket.be">renaat@wearerocket.be</a>
+        <a href="tel:+32473221829">+32 473 22 18 29</a>
+      </div>
+    </div>
+    <div id="form-wrap">
+      <form class="cf" id="cf" novalidate>
+        <div class="row">
+          <div class="field" id="f-naam"><label for="naam">Naam</label><input id="naam" name="naam" autocomplete="name"><span class="msg" aria-live="polite"></span></div>
+          <div class="field"><label for="bedrijf">Bedrijf <span class="opt">(optioneel)</span></label><input id="bedrijf" name="bedrijf" autocomplete="organization"></div>
+        </div>
+        <div class="row">
+          <div class="field" id="f-email"><label for="email">E-mail</label><input id="email" name="email" type="email" autocomplete="email"><span class="msg" aria-live="polite"></span></div>
+          <div class="field"><label for="tel">Telefoon <span class="opt">(optioneel)</span></label><input id="tel" name="tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <fieldset class="field">
+          <legend>Waarmee kunnen we helpen?</legend>
+          <div class="picks">
+            ${["Video","Print","Webdesign","Media & social","Fotografie","Iets anders"].map((v,k)=>`<input type="checkbox" id="p${k}" name="dienst" value="${esc(v)}"><label for="p${k}">${esc(v)}</label>`).join("")}
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="timing">Wanneer wil je starten?</label>
+          <select id="timing" name="timing"><option>Zo snel mogelijk</option><option>Binnen 1 à 3 maanden</option><option>Later dit jaar</option><option>Eerst even kennismaken</option></select>
+        </div>
+        <div class="field" id="f-bericht"><label for="bericht">Vertel kort over je project</label><textarea id="bericht" name="bericht"></textarea><span class="msg" aria-live="polite"></span></div>
+        <div class="submit-row"><small>We antwoorden binnen 2 werkdagen.</small><button class="btn" type="submit">Verstuur bericht</button></div>
+      </form>
+    </div>
+  </section>`;
+}
+
+view.addEventListener("click", e => {
+  const b = e.target.closest("button.go[data-vimeo]"); if (!b) return;
+  const f = document.createElement("iframe");
+  f.src = "https://player.vimeo.com/video/" + b.dataset.vimeo + "?autoplay=1&dnt=1&title=0&byline=0&portrait=0&color=cc3333";
+  f.allow = "autoplay; fullscreen; picture-in-picture"; f.allowFullscreen = true; f.title = "Film";
+  b.closest(".player").appendChild(f); b.remove();
+});
+
+function bindForm(){
+  const form = $("#cf"); if (!form) return;
+  const setErr = (id,msg) => { const f=$(id); f.classList.toggle("err",!!msg); f.querySelector(".msg").textContent = msg||""; };
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const d = new FormData(form);
+    const naam=(d.get("naam")||"").trim(), email=(d.get("email")||"").trim(), bericht=(d.get("bericht")||"").trim();
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    setErr("#f-naam", naam ? "" : "Vul je naam in.");
+    setErr("#f-email", ok ? "" : "Vul een geldig e-mailadres in, bv. naam@bedrijf.be.");
+    setErr("#f-bericht", bericht ? "" : "Vertel ons kort waar het over gaat.");
+    if (!naam || !ok || !bericht){ form.querySelector(".err input, .err textarea")?.focus(); return; }
+    let sent = false;
+    if (FORM_ENDPOINT){
+      try { const r = await fetch(FORM_ENDPOINT,{method:"POST",body:d,headers:{Accept:"application/json"}}); sent = r.ok; } catch(err){}
+      if (!sent){ setErr("#f-bericht","Versturen lukte niet. Mail ons gerust rechtstreeks op renaat@wearerocket.be."); return; }
+    }
+    $("#form-wrap").innerHTML = `<div class="done" role="status">
+      <img src="${MARK_RED}" alt="">
+      <h2>Bedankt, ${esc(naam.split(" ")[0])}!</h2>
+      <p>We nemen binnen 2 werkdagen contact met je op via ${esc(email)}. De koffie staat klaar.</p>
+      ${sent ? "" : `<p class="note">Voorbeeldweergave: dit formulier is nog niet gekoppeld, er werd niets verzonden.</p>`}
+    </div>`;
+  });
+}
+
+/* Router */
+const PAGES = { werk:[pageWerk,"Werk"], visie:[pageVisie,"Visie"], contact:[pageContact,"Contact"] };
+function route(){
+  clearTimeout(heroTimer);
+  const h = decodeURIComponent(location.hash.slice(1)) || "werk";
+  const c = CASES.find(x => x.slug === h);
+  let navKey = "werk", title;
+  if (c){ view.innerHTML = pageCase(c); title = `${c.klant} – ${c.project}`; }
+  else if (PAGES[h]){ view.innerHTML = PAGES[h][0](); navKey = h; title = PAGES[h][1]; }
+  else { view.innerHTML = pageWerk(); }
+  document.querySelectorAll("[data-nav]").forEach(a => a.dataset.nav === navKey ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current"));
+  document.title = title ? `${title} · Rocket` : "Rocket · Let's fly together";
+  bindForm();
+  heroStart();
+  closeMenu();
+  if (h === "klanten") { const k = $("#klanten"); if (k) { k.scrollIntoView(); return; } }
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange", route);
+
+/* Mobiel menu */
+const mm = $("#mm"), burger = $("#burger");
+function openMenu(){ mm.hidden = false; burger.setAttribute("aria-expanded","true"); document.body.style.overflow="hidden"; $("#mm-close").focus(); }
+function closeMenu(){ if (mm.hidden) return; mm.hidden = true; burger.setAttribute("aria-expanded","false"); document.body.style.overflow=""; }
+burger.addEventListener("click", openMenu);
+$("#mm-close").addEventListener("click", () => { closeMenu(); burger.focus(); });
+mm.addEventListener("click", e => { if (e.target.closest("a")) closeMenu(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+
+const hdr = $("#hdr");
+window.addEventListener("scroll", () => hdr.classList.toggle("scrolled", window.scrollY > 4), {passive:true});
+$("#yr").textContent = new Date().getFullYear();
+route();
+</script>
+</body>
+</html>

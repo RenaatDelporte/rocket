@@ -1,0 +1,54 @@
+name: Website publiceren
+
+# Zet de site online bij elke wijziging op main.
+# Handmatig starten kan ook: tabblad Actions → "Website publiceren" → Run workflow.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publiceren
+  cancel-in-progress: false
+
+jobs:
+  publiceren:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ontbrekende beelden ophalen
+        run: |
+          pip install --quiet pillow
+          python scripts/beelden_ophalen.py
+
+      - name: Nieuwe beelden bewaren in de repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A site/img
+          if git diff --cached --quiet; then
+            echo "Geen nieuwe beelden."
+          else
+            git commit -m "Beelden opgehaald van de oude website"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
