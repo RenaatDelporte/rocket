@@ -91,6 +91,7 @@ const KLANTEN = [
   ["Vishandel Boel","img/klanten/vishandel-boel.png","https://vishandelboel.be/"],
   ["Garage Thomas Uyttendaele","img/klanten/garage-thomas-uyttendaele.png","https://www.garageuyttendaelethomas.be/"],
   ["Hoeveslagerij Van Den Vreken","img/klanten/hoeveslagerij-van-den-vreken.png","https://vandenvreken.be/"],
+  ["Vinois Brasserie","img/klanten/vinois.png",""],
   ["Van Hessen Belgium","img/klanten/van-hessen.png","https://www.vanhessen.com/fr/contact/"],
   ["Growthru","img/klanten/growthru.png",""],
   ["Baeyens","img/klanten/baeyens.png",""],
