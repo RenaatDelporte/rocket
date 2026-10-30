@@ -187,5 +187,5 @@ const VRAGEN = [
   ["Hoe beginnen we eraan?", "Met een gesprek. Bel +32 473 22 18 29, mail naar renaat@wearerocket.be of vul het contactformulier in. Dan komen we langs voor een koffie, of thee. Of alletwee."]
 ];
 
-/* Contactformulier: adres van je formulierdienst (bv. Formspree). Leeg = niets wordt verzonden. */
+/* Contactformulier: adres van je formulierdienst (bv. Formspree). Leeg = het bericht opent kant-en-klaar in het mailprogramma van de bezoeker. */
 const FORM_ENDPOINT = "";

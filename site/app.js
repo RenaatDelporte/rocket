@@ -285,10 +285,25 @@ function bindForm(){
       try { var r = await fetch(FORM_ENDPOINT, { method: "POST", body: d, headers: { Accept: "application/json" } }); sent = r.ok; } catch (err) {}
       if (!sent){ setErr("#f-bericht", "Versturen lukte niet. Mail ons gerust rechtstreeks op renaat@wearerocket.be."); return; }
     }
+    if (!sent){
+      /* nog geen formulierdienst gekoppeld: het bericht klaarzetten in het mailprogramma van de bezoeker */
+      var lines = ["Onderwerp: " + (d.get("onderwerp") || ""), "Naam: " + naam];
+      if ((d.get("bedrijf") || "").trim()) lines.push("Bedrijf: " + d.get("bedrijf").trim());
+      lines.push("E-mail: " + email);
+      if ((d.get("tel") || "").trim()) lines.push("Telefoon: " + d.get("tel").trim());
+      var picks = d.getAll("dienst"); if (picks.length) lines.push("Waarmee kunnen we helpen: " + picks.join(", "));
+      if (d.get("timing")) lines.push("Starten: " + d.get("timing"));
+      lines.push("", bericht);
+      location.href = "mailto:renaat@wearerocket.be?subject=" + encodeURIComponent(d.get("_subject")) + "&body=" + encodeURIComponent(lines.join("\n"));
+      $("#form-wrap").innerHTML = '<div class="done" role="status"><img src="' + asset(MARK_RED) + '" alt="">' +
+        '<h2>Bijna klaar, ' + esc(naam.split(" ")[0]) + '!</h2>' +
+        '<p>Je mailprogramma opent met je bericht. Druk daar nog op verzenden.</p>' +
+        '<p class="note">Opent er niets? Mail ons op <a href="mailto:renaat@wearerocket.be">renaat@wearerocket.be</a> of bel <a href="tel:+32473221829">+32 473 22 18 29</a>.</p></div>';
+      return;
+    }
     $("#form-wrap").innerHTML = '<div class="done" role="status"><img src="' + asset(MARK_RED) + '" alt="">' +
       '<h2>Bedankt, ' + esc(naam.split(" ")[0]) + '!</h2>' +
-      '<p>We nemen binnen 2 werkdagen contact met je op via ' + esc(email) + '. De koffie staat klaar.</p>' +
-      (sent ? "" : '<p class="note">Dit formulier is nog niet gekoppeld: er werd niets verzonden. Mail ons op renaat@wearerocket.be.</p>') + '</div>';
+      '<p>We nemen binnen 2 werkdagen contact met je op via ' + esc(email) + '. De koffie staat klaar.</p></div>';
   });
 }
 
