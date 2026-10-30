@@ -28,6 +28,7 @@ function href(key){
   if (key.indexOf("dienst-") === 0) return PREFIX + "diensten/" + key.slice(7) + "/";
   return PREFIX + "portfolio/" + key + "/";
 }
+function prijzenVan(c){ return c.prijzen || (c.prijs ? [{ naam: c.prijs, tegel: c.prijsLabel }] : []); }
 function diensten(){ return typeof DIENSTEN !== "undefined" ? DIENSTEN : []; }
 function vragen(){ return typeof VRAGEN !== "undefined" ? VRAGEN : []; }
 function regio(){ return typeof REGIO !== "undefined" ? REGIO : "Oost-Vlaanderen"; }
@@ -52,7 +53,7 @@ function tile(c, i){
     '<div class="ph">' + img + '<div class="fb ' + FB[i % 3] + '"><img src="' + asset(fbMark(i)) + '" alt=""></div>' +
       (c.video ? '<span class="play" aria-hidden="true"></span>' : "") +
       (c.binnenkort ? '<span class="soon">Binnenkort</span>' : "") +
-      (c.prijs ? '<span class="award"><i aria-hidden="true"></i>' + esc(c.prijsLabel || "Award") + '</span>' : "") + '</div>' +
+      (prijzenVan(c).length ? '<span class="awards">' + prijzenVan(c).map(function(p){ return '<span class="award ' + esc(p.metaal || "") + '"><i aria-hidden="true"></i>' + esc(p.tegel || p.naam) + '</span>'; }).join("") + '</span>' : "") + '</div>' +
     '<div class="cap"><div class="who"><h3>' + esc(c.klant) + '</h3><p>' + esc(c.project) + '</p></div><span class="cat label">' + esc(c.discipline) + '</span></div>' +
   '</a>';
 }
@@ -123,7 +124,8 @@ function pageCase(c){
   var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", dv ? '<a href="' + esc(href("dienst-" + dv.slug)) + '">' + esc(c.discipline) + '</a>' : esc(c.discipline)]];
   if (c.jaar) facts.push(["Jaar", esc(c.jaar)]);
   if (c.rol) facts.push(["Rol", esc(c.rol)]);
-  if (c.prijs) facts.push(["Prijs", esc(c.prijs)]);
+  var pz = prijzenVan(c);
+  if (pz.length) facts.push([pz.length > 1 ? "Prijzen" : "Prijs", pz.map(function(p){ return esc(p.naam); }).join("<br>")]);
   if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
   if (c.website) facts.push(["Website", '<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "")) + '</a>']);
   var links = c.website ? '<a class="btn line" href="' + esc(c.website) + '" target="_blank" rel="noopener">Bekijk de website</a>' : "";

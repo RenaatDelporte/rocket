@@ -213,7 +213,7 @@ for (const c of D.CASES){
       ? { creator: { "@type": "Organization", name: c.bureau }, contributor: { "@type": "Person", name: "Renaat Delporte", jobTitle: c.rol || undefined, worksFor: { "@id": ORG["@id"] } } }
       : { creator: { "@id": ORG["@id"] }, ...(c.partner ? { contributor: { "@type": "Organization", name: c.partner } } : {}) }),
     ...(c.jaar ? { dateCreated: String(c.jaar) } : {}),
-    ...(c.prijs ? { award: c.prijs } : {}),
+    ...(ctx.prijzenVan(c).length ? { award: ctx.prijzenVan(c).map(p => p.naam) } : {}),
     about: { "@type": "Organization", name: c.klant, ...(c.website ? { url: c.website } : {}) },
     genre: c.discipline,
     ...(img ? { image: c.beelden.concat(c.poster ? [c.poster] : []).map(abs) } : {})

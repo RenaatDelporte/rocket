@@ -32,8 +32,7 @@ const HERO_SECONDS = 6;
      jaar: "2020",                      // optioneel: jaar van het project
      rol: "Account manager",            // optioneel: jouw rol in het project
      bureau: "Naam bureau",             // optioneel: project van vóór Rocket, gemaakt bij dit bureau
-     prijs: "Brons – Creative Belgium Awards 2021", // optioneel: gewonnen prijs (staat bij de feiten)
-     prijsLabel: "Creative Belgium Award",           // optioneel: korte tekst op de tegel
+     prijzen: [{ metaal: "zilver", naam: "Zilver – Clio Awards 2021", tegel: "Zilver · Clio Awards" }], // optioneel: gewonnen prijzen (metaal: goud, zilver of brons)
      partner: "Atelier 46"              // optioneel
    },
    ================================================================== */
@@ -41,11 +40,12 @@ const CASES = [
   { slug:"de-code-van-coppens", klant:"VTM", project:"De Code van Coppens", discipline:"Campagne",
     jaar:"2020", rol:"Account manager en digitale strategie bij at-thetable", bureau:"at-thetable",
     partner:"Playar, Rabbit Hole en DPG Media",
-    prijs:"Brons – Creative Belgium Awards 2021 (Media – Print)", prijsLabel:"Brons · Creative Belgium Awards",
+    prijzen:[{ metaal:"zilver", naam:"Zilver – Clio Entertainment Awards 2021 (Digital/Mobile)", tegel:"Zilver · Clio Awards" },
+             { metaal:"brons", naam:"Brons – Creative Belgium Awards 2021 (Media – Print)", tegel:"Brons · Creative Belgium" }],
     tekst:["In <b>De Code van Coppens</b> bouwen de broers Staf en Mathias Coppens escaperooms waar bekende Vlamingen uit moeten ontsnappen. Voor de lancering van het <b>tweede seizoen</b> lieten we de lezers het programma zelf beleven.",
-           "Op 22 augustus 2020 werd <b>Het Laatste Nieuws</b> één grote <b>escaperoom</b>. Overal in de krant zaten codes verstopt: in de artikels, in de weerkaart en in een morsecode. Wie alle codes kraakte, kon het slot openen.",
+           "Op 22 augustus 2020 werd <b>Het Laatste Nieuws</b> één grote <b>escaperoom</b>. Overal in de krant zaten codes verstopt: in de artikels, in de weerkaart en in een morsecode. Met <b>augmented reality</b> kwam de krant op je smartphone tot leven. Wie alle codes kraakte, kon het slot openen.",
            "De tijd die lezers met de advertentie doorbrachten: <b>3,5 uur</b>. Dat is <b>6000 keer langer</b> dan gemiddeld. Het bewijs dat print nog altijd werkt, als je het vernieuwend inzet.",
-           "De campagne won een <b>bronzen Creative Belgium Award</b> in de categorie Media – Print.",
+           "De campagne viel ook in de prijzen: internationaal won ze een <b>zilveren Clio Entertainment Award</b> (Digital/Mobile), in eigen land een <b>bronzen Creative Belgium Award</b> (Media – Print).",
            "Renaat Delporte, oprichter van Rocket, werkte mee als <b>account manager</b> en stond in voor de <b>digitale strategie</b> bij at-thetable."],
     beelden:["img/projecten/de-code-van-coppens-1.jpg","img/projecten/de-code-van-coppens-2.jpg","img/projecten/de-code-van-coppens-3.jpg","img/projecten/de-code-van-coppens-4.jpg"],
     video:"https://vimeo.com/1241241273", poster:"img/projecten/de-code-van-coppens-1.jpg" },
