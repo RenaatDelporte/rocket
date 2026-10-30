@@ -37,6 +37,13 @@ const HERO_SECONDS = 6;
    },
    ================================================================== */
 const CASES = [
+  { slug:"overkop", klant:"Overkop", project:"Lancering Overkop-huizen", discipline:"Campagne",
+    jaar:"2021", rol:"Account manager", bureau:"at-thetable",
+    tekst:["<b>Overkop-huizen</b> zijn plekken voor jongeren van 12 tot 25 jaar. Ze kunnen er vrij binnenlopen om anderen te ontmoeten, samen iets te doen of gewoon te praten. Wie het moeilijk heeft, vindt er een luisterend oor en de weg naar gepaste hulp.",
+           "Voor de <b>lancering van de Overkop-huizen</b> kwam er een campagne met een spot die toont wat er in zo'n huis allemaal kan: samen affiches plakken voor een concert, zelf op het podium staan of gewoon iets drinken met vrienden. Overkop wordt gesteund door de Vlaamse overheid.",
+           "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, begeleidde er de campagne als <b>account manager</b>."],
+    beelden:["img/projecten/overkop-1.jpg","img/projecten/overkop-2.jpg","img/projecten/overkop-3.jpg"],
+    video:"https://vimeo.com/1241339261", duur:"0:30", poster:"img/projecten/overkop-1.jpg", website:"https://www.overkop.be/" },
   { slug:"lu-eetbare-ondertitels", klant:"LU", project:"Eetbare ondertitels", discipline:"Campagne",
     rol:"Account manager", bureau:"at-thetable", partner:"The Breakfast Club",
     prijzen:[{ metaal:"brons", naam:"Brons – Creative Belgium Awards 2020 (Film – Branded TV Content & TV Creativity)", tegel:"Brons · Creative Belgium" }],
