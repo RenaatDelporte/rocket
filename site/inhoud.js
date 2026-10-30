@@ -37,6 +37,13 @@ const HERO_SECONDS = 6;
    },
    ================================================================== */
 const CASES = [
+  { slug:"hola-mediterraneo", klant:"¡HOLA! Mediterráneo", project:"Billboardcampagne", discipline:"Campagne",
+    rol:"Account manager", bureau:"at-thetable",
+    tekst:["<b>¡HOLA! Mediterráneo</b> is een biologische cava: <i>the traditional organic sparkle</i>.",
+           "Voor het merk kwam er een <b>billboardcampagne</b>: korte sponsorspots die het merk rond tv-programma's in de kijker zetten. In een paar seconden draait alles om de fles, met het herkenbare reliëf in het glas.",
+           "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, volgde er het project op als <b>account manager</b>."],
+    beelden:["img/projecten/hola-mediterraneo-1.jpg","img/projecten/hola-mediterraneo-2.jpg","img/projecten/hola-mediterraneo-3.jpg"],
+    video:"https://vimeo.com/1241341376", duur:"0:07", poster:"img/projecten/hola-mediterraneo-1.jpg", website:"https://holacava.com/" },
   { slug:"overkop", klant:"Overkop", project:"Lancering Overkop-huizen", discipline:"Campagne",
     jaar:"2021", rol:"Account manager", bureau:"at-thetable",
     tekst:["<b>Overkop-huizen</b> zijn plekken voor jongeren van 12 tot 25 jaar. Ze kunnen er vrij binnenlopen om anderen te ontmoeten, samen iets te doen of gewoon te praten. Wie het moeilijk heeft, vindt er een luisterend oor en de weg naar gepaste hulp.",
