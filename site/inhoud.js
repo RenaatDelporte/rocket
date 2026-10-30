@@ -29,10 +29,19 @@ const HERO_SECONDS = 6;
      datum: "2024-02-06",               // optioneel: publicatiedatum van de film (voor Google)
      binnenkort: true,                  // optioneel: toont "Binnenkort" op de tegel
      website: "https://klant.be",       // optioneel
+     jaar: "2020",                      // optioneel: jaar van het project
+     rol: "Account manager",            // optioneel: jouw rol in het project
+     bureau: "Naam bureau",             // optioneel: project van vóór Rocket, gemaakt bij dit bureau
      partner: "Atelier 46"              // optioneel
    },
    ================================================================== */
 const CASES = [
+  { slug:"vtm-blind-orders", klant:"VTM", project:"Blind Orders", discipline:"Campagne",
+    jaar:"2020", rol:"Account manager bij at-thetable", bureau:"at-thetable",
+    tekst:["Ter gelegenheid van het VTM-programma <b>Blind Getrouwd</b> lanceerden VTM en <b>Deliveroo</b> in het voorjaar van 2020 <b>Blind Orders</b>: een tijdelijke campagne met een speciale knop in de Deliveroo-app.",
+           "Met die knop bestelde je bij deelnemende restaurants een maaltijd zonder vooraf te weten welk gerecht je zou krijgen. Een culinaire <b>blind date</b> dus, helemaal in de geest van het programma.",
+           "Renaat Delporte, oprichter van Rocket, managede het volledige project als <b>account manager bij at-thetable</b>."],
+    beelden:[] },
   { slug:"ggz-ads", klant:"Netwerk Geestelijke Gezondheid", project:"Animatievideo", discipline:"Video",
     tekst:["Het Netwerk Geestelijke Gezondheid Aalst Dendermonde Sint-Niklaas (GGZ ADS) zet met de <b>Ronde Tafels Gedeelde Zorg</b> in op <b>zorgwekkende zorgmijders</b>. Dat zijn volwassenen met ernstige psychiatrische problemen, vaak in combinatie met dakloosheid, verslaving of financiële moeilijkheden, die hulp uit de weg gaan.",
            "Via de mobiele teams krijgen zij <b>aanklampende zorg</b>. Lokale partners zoals huisartsen, het OCMW of het CAW kunnen iemand anoniem signaleren. Om de twee weken zitten ze samen aan een <b>digitale ronde tafel</b> om de zorg samen op te nemen.",

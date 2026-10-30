@@ -208,8 +208,11 @@ for (const c of D.CASES){
     name: `${c.klant} – ${c.project}`,
     description: plain(c.tekst.join(" ")),
     url, inLanguage: "nl-BE",
-    creator: { "@id": ORG["@id"] },
-    ...(c.partner ? { contributor: { "@type": "Organization", name: c.partner } } : {}),
+    /* project van vóór Rocket (veld "bureau"): gemaakt door dat bureau, met Renaat in de vermelde rol */
+    ...(c.bureau
+      ? { creator: { "@type": "Organization", name: c.bureau }, contributor: { "@type": "Person", name: "Renaat Delporte", jobTitle: c.rol || undefined, worksFor: { "@id": ORG["@id"] } } }
+      : { creator: { "@id": ORG["@id"] }, ...(c.partner ? { contributor: { "@type": "Organization", name: c.partner } } : {}) }),
+    ...(c.jaar ? { dateCreated: String(c.jaar) } : {}),
     about: { "@type": "Organization", name: c.klant, ...(c.website ? { url: c.website } : {}) },
     genre: c.discipline,
     ...(img ? { image: c.beelden.concat(c.poster ? [c.poster] : []).map(abs) } : {})

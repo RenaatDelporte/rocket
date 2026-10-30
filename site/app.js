@@ -116,10 +116,12 @@ function pageCase(c){
   } else if (cover){
     top = '<div class="cover"><img class="main" src="' + esc(asset(cover)) + '"' + altAttr(c.beelden) + ' alt="' + esc(c.klant + " – " + c.project) + '" onload="this.parentNode.classList.add(\'loaded\')" onerror="nextSrc(this)||this.remove()"><div class="fb red"><img src="' + asset(MARK_WHITE) + '" alt=""></div></div>';
   } else {
-    top = '<div class="cover"><div class="fb black"><img src="' + asset(MARK_WHITE) + '" alt=""></div></div>';
+    top = "";   /* nog geen beelden: geen leeg vlak bovenaan */
   }
   var dv = dienstVan(c);
   var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", dv ? '<a href="' + esc(href("dienst-" + dv.slug)) + '">' + esc(c.discipline) + '</a>' : esc(c.discipline)]];
+  if (c.jaar) facts.push(["Jaar", esc(c.jaar)]);
+  if (c.rol) facts.push(["Rol", esc(c.rol)]);
   if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
   if (c.website) facts.push(["Website", '<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "")) + '</a>']);
   var links = c.website ? '<a class="btn line" href="' + esc(c.website) + '" target="_blank" rel="noopener">Bekijk de website</a>' : "";
@@ -133,7 +135,7 @@ function pageCase(c){
     '<h1>' + esc(c.klant) + '</h1>' +
     '<p class="proj">' + esc(c.project) + '</p>' +
   '</header>' +
-  '<div class="wrap">' + top + '</div>' +
+  (top ? '<div class="wrap">' + top + '</div>' : "") +
   '<section class="wrap p-body">' +
     '<dl class="facts">' + facts.map(function(f){ return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; }).join("") + '</dl>' +
     '<div class="p-text">' + c.tekst.map(function(t){ return '<p>' + t + '</p>'; }).join("") + (links ? '<div class="p-links">' + links + '</div>' : "") + '</div>' +
