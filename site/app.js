@@ -88,7 +88,7 @@ function clientsBand(){
 function pageWerk(){
   return '<section class="hero" aria-label="Uitgelicht werk">' + heroHTML() + '<div class="panel"><img src="' + asset(LOGO_WHITE) + '" alt="Rocket" width="900" height="393"></div></section>' +
   '<section class="wrap intro">' +
-    '<h1>Wij helpen lokale organisaties en ondernemers in ' + esc(regio()) + ' met bedrijfscommunicatie op maat.</h1>' +
+    '<h1>Wij helpen lokale organisaties en ondernemers met bedrijfscommunicatie op maat.</h1>' +
     '<div class="intro-txt">' +
       '<p>Elk bedrijf is specifiek en uniek. Daarom schuiven we aan bij je marketingverantwoordelijke en zetten we het juiste team van experts in. Hieronder een greep uit het werk dat we samen met onze klanten maakten.</p>' +
       '<a class="btn line" href="' + href("visie") + '">Onze visie <span aria-hidden="true">→</span></a>' +
