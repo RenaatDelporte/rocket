@@ -38,9 +38,11 @@ const HERO_SECONDS = 6;
    ================================================================== */
 const CASES = [
   { slug:"lu-eetbare-ondertitels", klant:"LU", project:"Eetbare ondertitels", discipline:"Campagne",
-    rol:"Account manager", bureau:"at-thetable",
+    rol:"Account manager", bureau:"at-thetable", partner:"The Breakfast Club",
+    prijzen:[{ metaal:"brons", naam:"Brons – Creative Belgium Awards 2020 (Film – Branded TV Content & TV Creativity)", tegel:"Brons · Creative Belgium" }],
     tekst:["Voor <b>LU</b> werden de ondertitels van het VTM-programma <b>Wat een dag</b> eetbaar: elke letter in beeld was een <b>letterkoekje</b>.",
            "Wie goed oplette, kon meespelen: hoeveel letterkoekjes kwamen er in de aflevering voorbij? Op vtm.be bekeek je de ondertitels opnieuw of waagde je een gok, met kans om alle koekjes te winnen.",
+           "De eetbare ondertitels wonnen een <b>bronzen Creative Belgium Award</b> in de categorie Film – Branded TV Content & TV Creativity.",
            "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, volgde er het project op als <b>account manager</b>."],
     beelden:["img/projecten/lu-eetbare-ondertitels-1.jpg","img/projecten/lu-eetbare-ondertitels-2.jpg","img/projecten/lu-eetbare-ondertitels-3.jpg","img/projecten/lu-eetbare-ondertitels-4.jpg"],
     video:"https://vimeo.com/1241247316", poster:"img/projecten/lu-eetbare-ondertitels-1.jpg" },
