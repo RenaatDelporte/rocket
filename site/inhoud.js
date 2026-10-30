@@ -31,20 +31,20 @@ const HERO_SECONDS = 6;
      website: "https://klant.be",       // optioneel
      jaar: "2020",                      // optioneel: jaar van het project
      rol: "Account manager",            // optioneel: jouw rol in het project
-     bureau: "Naam bureau",             // optioneel: project van vóór Rocket, gemaakt bij dit bureau
+     bureau: "Naam bureau",             // optioneel: project van vóór Rocket, gemaakt met dit communicatiebureau
      prijzen: [{ metaal: "zilver", naam: "Zilver – Clio Awards 2021", tegel: "Zilver · Clio Awards" }], // optioneel: gewonnen prijzen (metaal: goud, zilver of brons)
      partner: "Atelier 46"              // optioneel
    },
    ================================================================== */
 const CASES = [
   { slug:"lu-eetbare-ondertitels", klant:"LU", project:"Eetbare ondertitels", discipline:"Campagne",
-    rol:"Account manager bij at-thetable", bureau:"at-thetable",
+    rol:"Account manager", bureau:"at-thetable",
     tekst:["Voor <b>LU</b> werden de ondertitels van het VTM-programma <b>Wat een dag</b> eetbaar: elke letter in beeld was een <b>letterkoekje</b>.",
            "Wie goed oplette, kon meespelen: hoeveel letterkoekjes kwamen er in de aflevering voorbij? Op vtm.be bekeek je de ondertitels opnieuw of waagde je een gok, met kans om alle koekjes te winnen.",
-           "Renaat Delporte, oprichter van Rocket, volgde het project op als <b>account manager</b> bij at-thetable."],
+           "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, volgde er het project op als <b>account manager</b>."],
     beelden:["img/projecten/lu-eetbare-ondertitels-1.jpg","img/projecten/lu-eetbare-ondertitels-2.jpg","img/projecten/lu-eetbare-ondertitels-3.jpg","img/projecten/lu-eetbare-ondertitels-4.jpg"] },
   { slug:"de-code-van-coppens", klant:"VTM", project:"De Code van Coppens", discipline:"Campagne",
-    jaar:"2020", rol:"Account manager en digitale strategie bij at-thetable", bureau:"at-thetable",
+    jaar:"2020", rol:"Account manager en digitale strategie", bureau:"at-thetable",
     partner:"Playar, Rabbit Hole en DPG Media",
     prijzen:[{ metaal:"zilver", naam:"Zilver – Clio Entertainment Awards 2021 (Digital/Mobile)", tegel:"Zilver · Clio Awards" },
              { metaal:"brons", naam:"Brons – Creative Belgium Awards 2021 (Media – Print)", tegel:"Brons · Creative Belgium" }],
@@ -52,16 +52,16 @@ const CASES = [
            "Op 22 augustus 2020 werd <b>Het Laatste Nieuws</b> één grote <b>escaperoom</b>. Overal in de krant zaten codes verstopt: in de artikels, in de weerkaart en in een morsecode. Met <b>augmented reality</b> kwam de krant op je smartphone tot leven. Wie alle codes kraakte, kon het slot openen.",
            "De tijd die lezers met de advertentie doorbrachten: <b>3,5 uur</b>. Dat is <b>6000 keer langer</b> dan gemiddeld. Het bewijs dat print nog altijd werkt, als je het vernieuwend inzet.",
            "De campagne viel ook in de prijzen: internationaal won ze een <b>zilveren Clio Entertainment Award</b> (Digital/Mobile), in eigen land een <b>bronzen Creative Belgium Award</b> (Media – Print).",
-           "Renaat Delporte, oprichter van Rocket, werkte mee als <b>account manager</b> en stond in voor de <b>digitale strategie</b> bij at-thetable."],
+           "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, was er <b>account manager</b> en stond in voor de <b>digitale strategie</b>."],
     beelden:["img/projecten/de-code-van-coppens-1.jpg","img/projecten/de-code-van-coppens-2.jpg","img/projecten/de-code-van-coppens-3.jpg","img/projecten/de-code-van-coppens-4.jpg"],
     video:"https://vimeo.com/1241241273", poster:"img/projecten/de-code-van-coppens-1.jpg" },
   { slug:"vtm-blind-order", klant:"VTM", project:"Blind Order", discipline:"Campagne",
-    jaar:"2020", rol:"Account manager bij at-thetable", bureau:"at-thetable",
+    jaar:"2020", rol:"Account manager", bureau:"at-thetable",
     prijzen:[{ metaal:"zilver", naam:"Zilver – Clio Entertainment Awards 2021 (Partnerships & Collaborations)", tegel:"Zilver · Clio Awards" }],
     tekst:["Ter gelegenheid van het VTM-programma <b>Blind Getrouwd</b> lanceerden VTM en <b>Deliveroo</b> in het voorjaar van 2020 <b>Blind Order</b>: een tijdelijke campagne met een speciale knop in de Deliveroo-app.",
            "Met die knop bestelde je bij deelnemende restaurants een maaltijd zonder vooraf te weten welk gerecht je zou krijgen. Een culinaire <b>blind date</b> dus, helemaal in de geest van het programma.",
            "De samenwerking won een <b>zilveren Clio Entertainment Award</b> in de categorie Partnerships & Collaborations.",
-           "Renaat Delporte, oprichter van Rocket, managede het volledige project als <b>account manager bij at-thetable</b>."],
+           "Deze campagne werd gemaakt met <b>communicatiebureau at-thetable</b>. Renaat Delporte, oprichter van Rocket, managede er het volledige project als <b>account manager</b>."],
     beelden:["img/projecten/vtm-blind-order-1.jpg","img/projecten/vtm-blind-order-2.jpg","img/projecten/vtm-blind-order-3.jpg"],
     video:"https://vimeo.com/1241239904", poster:"img/projecten/vtm-blind-order-1.jpg" },
   { slug:"ggz-ads", klant:"Netwerk Geestelijke Gezondheid", project:"Animatievideo", discipline:"Video",

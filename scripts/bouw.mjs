@@ -210,7 +210,7 @@ for (const c of D.CASES){
     url, inLanguage: "nl-BE",
     /* project van vóór Rocket (veld "bureau"): gemaakt door dat bureau, met Renaat in de vermelde rol */
     ...(c.bureau
-      ? { creator: { "@type": "Organization", name: c.bureau }, contributor: { "@type": "Person", name: "Renaat Delporte", jobTitle: c.rol || undefined, worksFor: { "@id": ORG["@id"] } } }
+      ? { creator: { "@type": "Organization", name: c.bureau, description: "Communicatiebureau" }, contributor: { "@type": "Person", name: "Renaat Delporte", jobTitle: c.rol ? c.rol + " bij " + c.bureau : undefined, worksFor: { "@id": ORG["@id"] } } }
       : { creator: { "@id": ORG["@id"] }, ...(c.partner ? { contributor: { "@type": "Organization", name: c.partner } } : {}) }),
     ...(c.jaar ? { dateCreated: String(c.jaar) } : {}),
     ...(ctx.prijzenVan(c).length ? { award: ctx.prijzenVan(c).map(p => p.naam) } : {}),

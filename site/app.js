@@ -122,6 +122,7 @@ function pageCase(c){
   }
   var dv = dienstVan(c);
   var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", dv ? '<a href="' + esc(href("dienst-" + dv.slug)) + '">' + esc(c.discipline) + '</a>' : esc(c.discipline)]];
+  if (c.bureau) facts.push(["Gemaakt met", "Communicatiebureau " + esc(c.bureau)]);
   if (c.jaar) facts.push(["Jaar", esc(c.jaar)]);
   if (c.rol) facts.push(["Rol", esc(c.rol)]);
   var pz = prijzenVan(c);
