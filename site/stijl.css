@@ -9,7 +9,7 @@
   --red:#cc3333;
   --muted:#5c5c5c;
   --line:#e4e4e4;
-  --title:"Mont", "Montserrat", "Arial Black", system-ui, sans-serif;
+  --title:"Montserrat", "Arial Black", system-ui, sans-serif;  /* geen lokale "Mont": een demoversie op je computer toont DEMO bij accenten */
   --body:"Lato", "Roboto", "Helvetica Neue", Arial, sans-serif;
   --wrap:1320px;
   color-scheme:light;
