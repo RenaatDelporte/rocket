@@ -28,3 +28,7 @@ site/img/klanten/growthru.png	https://www-static.wearerocket.be/wp-content/uploa
 site/img/klanten/baeyens.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten2-150x150.png
 site/img/klanten/solva.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten3-150x150.png
 site/img/klanten/db-decoteam.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4.png	https://www-static.wearerocket.be/wp-content/uploads/2024/09/klanten4-150x150.png
+site/img/projecten/de-code-van-coppens-1.jpg	frame@33.5@https://cb.og-cloud.com/2021/CB-21-EN00459_1.mp4
+site/img/projecten/de-code-van-coppens-2.jpg	frame@46@https://cb.og-cloud.com/2021/CB-21-EN00459_1.mp4
+site/img/projecten/de-code-van-coppens-3.jpg	frame@40@https://cb.og-cloud.com/2021/CB-21-EN00459_1.mp4
+site/img/projecten/de-code-van-coppens-4.jpg	frame@72@https://cb.og-cloud.com/2021/CB-21-EN00459_1.mp4

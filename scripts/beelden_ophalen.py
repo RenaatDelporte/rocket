@@ -17,6 +17,15 @@ def vimeo_still(video_id):
         f.write(f"{video_id}\t{info.get('title','')}\t{info.get('duration','')}s\t{info.get('width','')}x{info.get('height','')}\t{info.get('upload_date','')}\n")
     return re.sub(r"-d_\d+(x\d+)?$", "-d_1920x1080", info["thumbnail_url"])
 
+def video_frame(spec):
+    """frame@33.5@https://.../film.mp4 → beeld uit de film op 33,5 seconden (met ffmpeg)."""
+    import subprocess, tempfile
+    _, sec, url = spec.split("@", 2)
+    tmp = tempfile.mktemp(suffix=".png")
+    subprocess.run(["ffmpeg", "-loglevel", "error", "-ss", sec, "-i", url, "-frames:v", "1", "-y", tmp], check=True, timeout=180)
+    with open(tmp, "rb") as f:
+        return f.read()
+
 ok = skip = fail = 0
 for line in open("scripts/beelden.txt", encoding="utf-8"):
     line = line.strip()
@@ -30,7 +39,8 @@ for line in open("scripts/beelden.txt", encoding="utf-8"):
         try:
             if url.startswith("vimeo:"):
                 url = vimeo_still(url.split(":", 1)[1])
-            im = ImageOps.exif_transpose(Image.open(io.BytesIO(fetch(url))))
+            data = video_frame(url) if url.startswith("frame@") else fetch(url)
+            im = ImageOps.exif_transpose(Image.open(io.BytesIO(data)))
             os.makedirs(os.path.dirname(target), exist_ok=True)
             if target.endswith(".png"):
                 im = im.convert("RGBA")

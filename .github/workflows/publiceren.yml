@@ -46,6 +46,7 @@ jobs:
       - name: Ontbrekende beelden ophalen
         run: |
           pip install --quiet pillow
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           python scripts/beelden_ophalen.py
 
       - name: Nieuwe beelden bewaren in de repository

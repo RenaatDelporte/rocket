@@ -51,7 +51,8 @@ function tile(c, i){
   return '<a class="tile" href="' + esc(href(c.slug)) + '">' +
     '<div class="ph">' + img + '<div class="fb ' + FB[i % 3] + '"><img src="' + asset(fbMark(i)) + '" alt=""></div>' +
       (c.video ? '<span class="play" aria-hidden="true"></span>' : "") +
-      (c.binnenkort ? '<span class="soon">Binnenkort</span>' : "") + '</div>' +
+      (c.binnenkort ? '<span class="soon">Binnenkort</span>' : "") +
+      (c.prijs ? '<span class="award"><i aria-hidden="true"></i>' + esc(c.prijsLabel || "Award") + '</span>' : "") + '</div>' +
     '<div class="cap"><div class="who"><h3>' + esc(c.klant) + '</h3><p>' + esc(c.project) + '</p></div><span class="cat label">' + esc(c.discipline) + '</span></div>' +
   '</a>';
 }
@@ -122,6 +123,7 @@ function pageCase(c){
   var facts = [["Klant", esc(c.klant)], ["Project", esc(c.project)], ["Discipline", dv ? '<a href="' + esc(href("dienst-" + dv.slug)) + '">' + esc(c.discipline) + '</a>' : esc(c.discipline)]];
   if (c.jaar) facts.push(["Jaar", esc(c.jaar)]);
   if (c.rol) facts.push(["Rol", esc(c.rol)]);
+  if (c.prijs) facts.push(["Prijs", esc(c.prijs)]);
   if (c.partner) facts.push(["In samenwerking met", esc(c.partner)]);
   if (c.website) facts.push(["Website", '<a href="' + esc(c.website) + '" target="_blank" rel="noopener">' + esc(c.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "")) + '</a>']);
   var links = c.website ? '<a class="btn line" href="' + esc(c.website) + '" target="_blank" rel="noopener">Bekijk de website</a>' : "";
