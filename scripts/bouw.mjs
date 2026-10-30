@@ -76,7 +76,11 @@ function shell({ mode, P, page, title, desc, canonical, ogImage, ogType, jsonld,
 <meta property="og:url" content="${canonical}">
 <meta property="og:image" content="${ogImage}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="${A("img/streepjes-rood.png")}">
+<link rel="icon" href="${A("favicon.ico")}" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="${A("img/favicon-32.png")}">
+<link rel="icon" type="image/png" sizes="192x192" href="${A("img/icon-192.png")}">
+<link rel="apple-touch-icon" href="${A("img/apple-touch-icon.png")}">
+<link rel="manifest" href="${A("site.webmanifest")}">
 <link rel="alternate" type="text/plain" title="Samenvatting voor AI-assistenten" href="${SITE_URL}/llms.txt">
 <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": jsonld }).replace(/</g, "\\u003c")}</script>`;
   return `${head}
@@ -135,7 +139,7 @@ if (vi > -1){
 const DIST = path.join(ROOT, "dist");
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
-for (const f of ["stijl.css", "app.js", "inhoud.js", ".nojekyll"]) if (fs.existsSync(path.join(SITE, f))) fs.copyFileSync(path.join(SITE, f), path.join(DIST, f));
+for (const f of ["stijl.css", "app.js", "inhoud.js", "favicon.ico", ".nojekyll"]) if (fs.existsSync(path.join(SITE, f))) fs.copyFileSync(path.join(SITE, f), path.join(DIST, f));
 fs.cpSync(path.join(SITE, "img"), path.join(DIST, "img"), { recursive: true });
 
 const today = new Date().toISOString().slice(0, 10);
@@ -224,8 +228,14 @@ for (const c of D.CASES){
   pages.push([`/portfolio/${c.slug}/`, 0.8]);
 }
 
+/* app-icoon voor gsm (startscherm) */
+fs.writeFileSync(path.join(DIST, "site.webmanifest"), JSON.stringify({
+  name: "Rocket", short_name: "Rocket", start_url: "./", display: "browser", background_color: "#ffffff", theme_color: "#cc3333",
+  icons: [{ src: "img/icon-192.png", sizes: "192x192", type: "image/png" }, { src: "img/icon-512.png", sizes: "512x512", type: "image/png" }]
+}, null, 2));
+
 /* 404 */
-fs.writeFileSync(path.join(DIST, "404.html"), `<!doctype html><html lang="nl-BE"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pagina niet gevonden – Rocket</title><meta name="robots" content="noindex">
+fs.writeFileSync(path.join(DIST, "404.html"), `<!doctype html><html lang="nl-BE"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Pagina niet gevonden – Rocket</title><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png"><meta name="robots" content="noindex">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Lato,Arial,sans-serif;background:#cc3333;color:#fff;text-align:center;padding:24px}h1{font-family:Montserrat,Arial Black,sans-serif;font-size:clamp(2rem,6vw,3.4rem);margin:0 0 12px}a{color:#fff;font-weight:700}</style></head>
 <body><div><h1>Deze pagina bestaat niet (meer).</h1><p><a id="home" href="/">Naar het portfolio van Rocket</a></p></div>
 <script>if(location.pathname.indexOf("/rocket/")===0)document.getElementById("home").href="/rocket/";</script></body></html>
