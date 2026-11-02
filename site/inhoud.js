@@ -233,7 +233,8 @@ const WIE_ZIJN_WIJ = {
   intro: "Rocket is een marketing- en communicatiepartner uit Lede. Achter Rocket staan oprichter <b>Renaat Delporte</b> en een <b>team van experts</b>.",
   foto: "",
   renaat: ["Renaat Delporte richtte Rocket op om bedrijven en organisaties te helpen met <b>marketing en communicatie op maat</b>. Hij gaat langs, schuift aan naast de marketingverantwoordelijke en kijkt samen waar het beter en efficiënter kan.",
-           "Daarvoor was hij <b>account manager bij communicatiebureau at-thetable</b>. Hij werkte er aan campagnes voor onder meer <b>VTM, LU, Overkop en ¡HOLA! Mediterráneo</b>. Campagnes waaraan hij meewerkte, wonnen <b>twee zilveren Clio Entertainment Awards</b> en <b>twee bronzen Creative Belgium Awards</b>."],
+           "Daarvoor was hij <b>account manager bij communicatiebureau at-thetable</b>. Hij werkte er aan campagnes voor onder meer <b>VTM, LU, Overkop en ¡HOLA! Mediterráneo</b>. Campagnes waaraan hij meewerkte, wonnen <b>twee zilveren Clio Entertainment Awards</b> en <b>twee bronzen Creative Belgium Awards</b>.",
+           "Vandaag helpt Renaat met Rocket <b>lokale organisaties en ondernemers</b> met bedrijfscommunicatie op maat. Samen met het <b>team van experts</b> gaat hij langs bij lokale bedrijven en neemt hij <b>al hun marketingcommunicatie</b> mee onder handen: van advies en strategie tot video, websites, drukwerk, fotografie en sociale media."],
   team: ["Rocket werkt met een <b>team van experts</b>. Voor elke opdracht stellen we het team samen dat het best past bij de vraag: van filmmakers en fotografen tot ontwerpers en webbouwers.",
          "Zo krijgt elk project de juiste mensen aan tafel."]
 };
