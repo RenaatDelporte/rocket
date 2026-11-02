@@ -153,8 +153,10 @@ function pageCase(c){
 }
 
 function dienstenGrid(skip){
-  return '<div class="diensten">' + diensten().filter(function(d){ return d.slug !== skip; }).map(function(d){
-    return '<a class="dienst" href="' + esc(href("dienst-" + d.slug)) + '"><h3>' + esc(d.naam) + '</h3><p>' + esc(d.kort) + '</p><span class="lees">Meer over ' + esc(d.naam.toLowerCase()) + ' <span aria-hidden="true">→</span></span></a>';
+  var lijst = diensten().filter(function(d){ return d.slug !== skip; });
+  /* 5 kaarten: 3 kolommen met de eerste dubbel zo breed; 4 kaarten: 2 x 2 */
+  return '<div class="diensten n' + lijst.length + '">' + lijst.map(function(d){
+    return '<a class="dienst" href="' + esc(href("dienst-" + d.slug)) + '"><h3>' + esc(d.naam) + '</h3><p>' + esc(d.kort) + '</p><span class="lees">Meer over ' + esc(d.naam.toLowerCase()) + '&nbsp;<span aria-hidden="true">→</span></span></a>';
   }).join("") + '</div>';
 }
 function faqHTML(){

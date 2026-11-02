@@ -271,8 +271,14 @@ a.sr-only:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;clip:au
 .blok b{font-weight:700}
 .aanpak,.gebied{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start}
 @media (max-width:860px){.aanpak,.gebied{grid-template-columns:minmax(0,1fr)}}
-.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:32px}
-.dienst{display:grid;gap:10px;align-content:start;padding:28px 26px;background:var(--grey);border-radius:4px;text-decoration:none;transition:background .15s ease,color .15s ease}
+.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:32px}
+.diensten.n5{grid-template-columns:repeat(3,minmax(0,1fr))}
+.diensten.n5 .dienst:first-child{grid-column:span 2}
+.diensten.n4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){.diensten.n5{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.diensten.n5,.diensten.n4{grid-template-columns:minmax(0,1fr)}.diensten.n5 .dienst:first-child{grid-column:auto}}
+.dienst{display:grid;gap:10px;align-content:start;min-width:0;padding:28px 26px;background:var(--grey);border-radius:4px;text-decoration:none;transition:background .15s ease,color .15s ease}
+.dienst h3,.dienst p,.dienst .lees{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
 .dienst h3{font-size:1.25rem}
 .dienst p{margin:0;color:var(--muted)}
 .dienst .lees{margin-top:6px;color:var(--red);font-weight:700;font-size:.95rem}
