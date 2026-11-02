@@ -24,7 +24,7 @@ function href(key){
   if (MODE === "hash") return "#" + key;
   if (key === "portfolio") return PREFIX || "./";
   if (key === "klanten") return (PREFIX || "./") + "#klanten";
-  if (key === "visie" || key === "contact") return PREFIX + key + "/";
+  if (key === "visie" || key === "contact" || key === "wie-zijn-wij") return PREFIX + key + "/";
   if (key.indexOf("dienst-") === 0) return PREFIX + "diensten/" + key.slice(7) + "/";
   return PREFIX + "portfolio/" + key + "/";
 }
@@ -189,12 +189,39 @@ function pageVisie(){
     '</div>' +
   '</section>' +
   '<section class="wrap blok" aria-labelledby="wat-title"><span class="label">Wat we doen</span><h2 id="wat-title">Marketing en communicatie, van advies tot uitvoering</h2>' + dienstenGrid() + '</section>' +
-  '<section class="wrap blok gebied" aria-labelledby="gebied-title">' +
+  faqHTML() +
+  '<section class="wrap blok knoppen"><a class="btn" href="' + href("portfolio") + '">Bekijk het portfolio</a><a class="btn line" href="' + href("wie-zijn-wij") + '">Wie zijn wij <span aria-hidden="true">→</span></a></section>' +
+  ctaBand();
+}
+
+function gebiedHTML(){
+  return '<section class="wrap blok gebied" aria-labelledby="gebied-title">' +
     '<div><span class="label">Waar we actief zijn</span><h2 id="gebied-title">In heel ' + esc(regio()) + '</h2></div>' +
     '<p class="lede">' + (typeof WERKGEBIED !== "undefined" ? WERKGEBIED : "") + '</p>' +
+  '</section>';
+}
+
+function pageWieZijnWij(){
+  var W = typeof WIE_ZIJN_WIJ !== "undefined" ? WIE_ZIJN_WIJ : { intro: "", foto: "", renaat: [], team: [] };
+  var bekroond = CASES.filter(function(c){ return prijzenVan(c).length; });
+  var foto = W.foto
+    ? '<div class="portret"><img src="' + esc(asset(W.foto)) + '" alt="Renaat Delporte, oprichter van Rocket" loading="lazy"></div>'
+    : '<div class="statement"><img src="' + asset(MARK_WHITE) + '" alt=""></div>';
+  return '<header class="wrap page-head"><span class="label">Wie zijn wij</span><h1>Mensen met een verhaal, voor jouw verhaal</h1>' +
+    (W.intro ? '<p class="lede">' + W.intro + '</p>' : "") + '</header>' +
+  '<section class="wrap visie" aria-labelledby="renaat-title">' +
+    '<div><span class="label rood">Oprichter</span><h2 id="renaat-title" class="h2">Renaat Delporte</h2>' + W.renaat.map(function(t){ return '<p>' + t + '</p>'; }).join("") + '</div>' +
+    foto +
   '</section>' +
-  faqHTML() +
-  '<section class="wrap blok"><p><a class="btn" href="' + href("portfolio") + '">Bekijk het portfolio</a></p></section>' +
+  '<section class="wrap blok aanpak" aria-labelledby="team-title">' +
+    '<div><span class="label">Het team</span><h2 id="team-title">Een team van experts</h2></div>' +
+    '<div>' + W.team.map(function(t){ return '<p>' + t + '</p>'; }).join("") + '</div>' +
+  '</section>' +
+  gebiedHTML() +
+  (bekroond.length ? '<section class="wrap more" aria-labelledby="prijs-title"><div class="more-head"><h2 id="prijs-title">Werk dat in de prijzen viel</h2><a href="' + href("portfolio") + '">Alle projecten →</a></div>' +
+    '<div class="tiles three">' + bekroond.map(function(c){ return tile(c, CASES.indexOf(c)); }).join("") + '</div>' +
+    '<p class="voetnoot">Gemaakt met communicatiebureau at-thetable, met Renaat als account manager.</p></section>' : "") +
+  '<section class="wrap blok knoppen"><a class="btn" href="' + href("contact") + '">Maak kennis</a><a class="btn line" href="' + href("visie") + '">Onze visie <span aria-hidden="true">→</span></a></section>' +
   ctaBand();
 }
 
@@ -325,7 +352,7 @@ function afterRender(navKey){
 }
 
 /* voorbeeldweergave: pagina's opbouwen op basis van #adres */
-var PAGES = { portfolio: [pageWerk, "Portfolio"], werk: [pageWerk, "Portfolio"], visie: [pageVisie, "Visie"], contact: [pageContact, "Contact"] };
+var PAGES = { portfolio: [pageWerk, "Portfolio"], werk: [pageWerk, "Portfolio"], visie: [pageVisie, "Onze visie"], "wie-zijn-wij": [pageWieZijnWij, "Wie zijn wij"], contact: [pageContact, "Contact"] };
 function route(){
   clearTimeout(heroTimer);
   var view = $("#view");

@@ -227,6 +227,17 @@ const DIENSTEN = [
     disciplines:["Fotografie"] }
 ];
 
+/* WIE ZIJN WIJ — tekst voor de pagina wearerocket.be/wie-zijn-wij/.
+   FOTO: pad naar een portret van Renaat (bv. "img/renaat.jpg"). Leeg = rood vlak met het Rocket-teken. */
+const WIE_ZIJN_WIJ = {
+  intro: "Rocket is een marketing- en communicatiepartner uit Lede. Achter Rocket staan oprichter <b>Renaat Delporte</b> en een <b>team van experts</b>.",
+  foto: "",
+  renaat: ["Renaat Delporte richtte Rocket op om bedrijven en organisaties te helpen met <b>marketing en communicatie op maat</b>. Hij gaat langs, schuift aan naast de marketingverantwoordelijke en kijkt samen waar het beter en efficiënter kan.",
+           "Daarvoor was hij <b>account manager bij communicatiebureau at-thetable</b>. Hij werkte er aan campagnes voor onder meer <b>VTM, LU, Overkop en ¡HOLA! Mediterráneo</b>. Campagnes waaraan hij meewerkte, wonnen <b>twee zilveren Clio Entertainment Awards</b> en <b>twee bronzen Creative Belgium Awards</b>."],
+  team: ["Rocket werkt met een <b>team van experts</b>. Voor elke opdracht stellen we het team samen dat het best past bij de vraag: van filmmakers en fotografen tot ontwerpers en webbouwers.",
+         "Zo krijgt elk project de juiste mensen aan tafel."]
+};
+
 /* VEELGESTELDE VRAGEN — [vraag, antwoord]. Staan op de pagina "Onze visie". */
 const VRAGEN = [
   ["Wat doet Rocket?", "Rocket is een marketing- en communicatiepartner uit Lede. We gaan langs bij bedrijven, schuiven aan bij de marketingverantwoordelijke en kijken samen waar het beter en efficiënter kan. Daarnaast maken we video's, websites, drukwerk en fotografie, met een team van experts."],

@@ -36,7 +36,7 @@ const ORG = {
   telephone: "+32473221829",
   vatID: "BE0797956741",
   address: { "@type": "PostalAddress", streetAddress: "Molenhoek 168", postalCode: "9340", addressLocality: "Lede", addressCountry: "BE" },
-  founder: { "@type": "Person", name: "Renaat Delporte" },
+  founder: { "@type": "Person", "@id": SITE_URL + "/#renaat", name: "Renaat Delporte" },
   areaServed: { "@type": "AdministrativeArea", name: D.REGIO, containedInPlace: { "@type": "Country", name: "België" } },
   knowsAbout: ["Marketingbegeleiding", "Marketingadvies", "Bedrijfscommunicatie", "Videoproductie", "Bedrijfsfilm", "Corporate film", "Animatievideo", "Webdesign", "Grafisch ontwerp", "Drukwerk", "Fotografie", "Social media"],
   hasOfferCatalog: { "@type": "OfferCatalog", name: "Diensten van Rocket", itemListElement: D.DIENSTEN.map(d => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: d.naam, url: `${SITE_URL}/diensten/${d.slug}/` } })) },
@@ -51,8 +51,8 @@ function vimeoId(u){ return ctx.vimeoId(u); }
 /* ---------- vaste delen van elke pagina ---------- */
 function shell({ mode, P, page, title, desc, canonical, ogImage, ogType, jsonld, main, mainClass, preview }){
   const L = mode === "hash"
-    ? { home: "#portfolio", contact: "#contact", visie: "#visie", dienst: s => "#dienst-" + s }
-    : { home: P || "./", contact: P + "contact/", visie: P + "visie/", dienst: s => P + "diensten/" + s + "/" };
+    ? { home: "#portfolio", contact: "#contact", visie: "#visie", wie: "#wie-zijn-wij", dienst: s => "#dienst-" + s }
+    : { home: P || "./", contact: P + "contact/", visie: P + "visie/", wie: P + "wie-zijn-wij/", dienst: s => P + "diensten/" + s + "/" };
   const A = p => (mode === "hash" ? "" : P) + p;
   const head = preview
     ? `<title>Rocket website</title>
@@ -92,15 +92,15 @@ ${preview ? "" : "</head>\n"}${preview ? "" : `<body data-page="${page}" data-pr
 <a class="sr-only" href="#view">Naar de inhoud</a>
 <header class="site" id="hdr">
   <div class="wrap bar">
-    <ul class="nav-side nav-left"><li><a href="${L.home}" data-nav="portfolio">Portfolio</a></li></ul>
+    <ul class="nav-side nav-left"><li><a href="${L.home}" data-nav="portfolio">Portfolio</a></li><li><a href="${L.wie}" data-nav="wie-zijn-wij">Wie zijn wij</a></li></ul>
     <a class="brand" href="${L.home}" aria-label="Rocket, naar home"><img src="${A("img/logo-rood.png")}" alt="Rocket" width="560" height="245"></a>
-    <ul class="nav-side nav-right"><li><a href="${L.contact}" data-nav="contact">Contact</a></li></ul>
+    <ul class="nav-side nav-right"><li><a href="${L.visie}" data-nav="visie">Onze visie</a></li><li><a href="${L.contact}" data-nav="contact">Contact</a></li></ul>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mm"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="mobile-menu" id="mm" hidden>
   <div class="mm-top"><img src="${A("img/logo-wit.png")}" alt="Rocket" width="900" height="393"><button class="mm-close" id="mm-close" type="button" aria-label="Sluit menu">×</button></div>
-  <ul><li><a href="${L.home}" data-nav="portfolio">Portfolio</a></li><li><a href="${L.contact}" data-nav="contact">Contact</a></li></ul>
+  <ul><li><a href="${L.home}" data-nav="portfolio">Portfolio</a></li><li><a href="${L.wie}" data-nav="wie-zijn-wij">Wie zijn wij</a></li><li><a href="${L.visie}" data-nav="visie">Onze visie</a></li><li><a href="${L.contact}" data-nav="contact">Contact</a></li></ul>
   <div class="mm-foot"><img src="${A("img/streepjes-wit.png")}" alt="" width="400" height="131"><span>renaat@wearerocket.be</span><span>+32 473 22 18 29</span></div>
 </div>
 <main id="view"${mainClass ? ` class="${mainClass}"` : ""}>${main}</main>
@@ -109,6 +109,7 @@ ${preview ? "" : "</head>\n"}${preview ? "" : `<body data-page="${page}" data-pr
     <div><img src="${A("img/logo-wit.png")}" alt="Rocket" width="900" height="393"><p>Wij helpen lokale ondernemers in ${esc(D.REGIO)} met bedrijfscommunicatie op maat.</p></div>
     <div><h2 class="foot-h">Wat we doen</h2><ul>
 ${D.DIENSTEN.map(d => `      <li><a href="${L.dienst(d.slug)}">${esc(d.naam)}</a></li>`).join("\n")}
+      <li><a href="${L.wie}">Wie zijn wij</a></li>
       <li><a href="${L.visie}">Onze visie</a></li></ul></div>
     <div><h2 class="foot-h">Contact</h2><address><ul>
       <li>Renaat Delporte</li><li>Molenhoek 168, 9340 Lede</li>
@@ -167,15 +168,18 @@ function crumbs(list){ return { "@type": "BreadcrumbList", itemListElement: list
 /* visie en contact */
 for (const [key, fn, title, desc] of [
   ["visie", ctx.pageVisie, `Onze visie en aanpak – marketingpartner in ${D.REGIO} | Rocket`, `Rocket schuift aan naast je marketingverantwoordelijke om bij te sturen, te verbeteren en efficiënter te werken, met een team van experts. Actief in heel ${D.REGIO}.`],
+  ["wie-zijn-wij", ctx.pageWieZijnWij, `Wie zijn wij – Renaat Delporte en een team van experts | Rocket`, `Rocket uit Lede: oprichter Renaat Delporte en een team van experts helpen bedrijven en organisaties in ${D.REGIO} met marketing en communicatie op maat.`],
   ["contact", ctx.pageContact, "Contact – Rocket", `Neem contact op met Rocket in Lede: bel +32 473 22 18 29 of mail renaat@wearerocket.be. We komen graag langs, overal in ${D.REGIO}.`]
 ]){
   write(`${key}/index.html`, shell({
     mode: "static", P: "../", page: key, title, desc, canonical: `${SITE_URL}/${key}/`, ogType: "website", ogImage: abs("img/logo-rood.png"),
-    jsonld: [ORG, WEBSITE, { "@type": key === "contact" ? "ContactPage" : "AboutPage", url: `${SITE_URL}/${key}/`, name: title, isPartOf: { "@id": WEBSITE["@id"] }, about: { "@id": ORG["@id"] } },
+    jsonld: [ORG, WEBSITE, { "@type": key === "contact" ? "ContactPage" : key === "wie-zijn-wij" ? "AboutPage" : "WebPage", url: `${SITE_URL}/${key}/`, name: title, isPartOf: { "@id": WEBSITE["@id"] }, about: { "@id": ORG["@id"] } },
+      ...(key === "wie-zijn-wij" ? [{ "@type": "Person", "@id": SITE_URL + "/#renaat", name: "Renaat Delporte", jobTitle: "Oprichter", worksFor: { "@id": ORG["@id"] }, url: `${SITE_URL}/wie-zijn-wij/`,
+        knowsAbout: ["Marketing", "Bedrijfscommunicatie", "Accountmanagement", "Campagnes", "Video", "Webdesign"] }] : []),
       ...(key === "visie" && D.VRAGEN.length ? [{ "@type": "FAQPage", "@id": `${SITE_URL}/visie/#vragen`, url: `${SITE_URL}/visie/`, inLanguage: "nl-BE",
         mainEntity: D.VRAGEN.map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) }] : []),
-      crumbs([["Rocket", SITE_URL + "/"], [key === "visie" ? "Onze visie" : "Contact", `${SITE_URL}/${key}/`]])],
-    main: render(fn, "../"), mainClass: key === "visie" ? "ends-band" : ""
+      crumbs([["Rocket", SITE_URL + "/"], [{ visie: "Onze visie", "wie-zijn-wij": "Wie zijn wij", contact: "Contact" }[key], `${SITE_URL}/${key}/`]])],
+    main: render(fn, "../"), mainClass: key === "contact" ? "" : "ends-band"
   }));
   pages.push([`/${key}/`, 0.6]);
 }
@@ -270,6 +274,7 @@ fs.writeFileSync(path.join(DIST, "llms.txt"), `# Rocket
 - Adres: Molenhoek 168, 9340 Lede, België
 - Ondernemingsnummer: BE 0797.956.741
 - Werkgebied: ${plain(vm.runInContext('typeof WERKGEBIED !== "undefined" ? WERKGEBIED : ""', ctx) || D.REGIO)}
+- Over Rocket: oprichter Renaat Delporte en een team van experts. Zie ${SITE_URL}/wie-zijn-wij/
 - Werkwijze: Rocket gaat langs bij bedrijven, zit naast de marketingverantwoordelijke en kijkt waar het beter en efficiënter kan. Voor de uitvoering werkt Rocket met een team van experts. Zie ${SITE_URL}/visie/
 - Prijzen: op aanvraag.
 
